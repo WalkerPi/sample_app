@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module Byebug::Helpers::FrameHelper - byebug-8.2.2 Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../";
+</script>
+
+<script src="../../js/jquery.js"></script>
+<script src="../../js/darkfish.js"></script>
+
+<link href="../../css/fonts.css" rel="stylesheet">
+<link href="../../css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../../table_of_contents.html#pages">Pages</a>
+    <a href="../../table_of_contents.html#classes">Classes</a>
+    <a href="../../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-adjust_frame">#adjust_frame</a>
+    
+    <li ><a href="#method-i-direction">#direction</a>
+    
+    <li ><a href="#method-i-frame_err">#frame_err</a>
+    
+    <li ><a href="#method-i-index_from_start">#index_from_start</a>
+    
+    <li ><a href="#method-i-jump_frames">#jump_frames</a>
+    
+    <li ><a href="#method-i-navigate_to_frame">#navigate_to_frame</a>
+    
+    <li ><a href="#method-i-out_of_bounds-3F">#out_of_bounds?</a>
+    
+    <li ><a href="#method-i-switch_to_frame">#switch_to_frame</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-Byebug::Helpers::FrameHelper">
+  <h1 id="module-Byebug::Helpers::FrameHelper" class="module">
+    module Byebug::Helpers::FrameHelper
+  </h1>
+
+  <section class="description">
+    
+<p>Utilities to assist frame navigation</p>
+
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-jump_frames" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">jump_frames</span><span
+            class="method-args">(steps)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="jump_frames-source">
+            <pre><span class="ruby-comment"># File lib/byebug/helpers/frame.rb, line 14</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">jump_frames</span>(<span class="ruby-identifier">steps</span>)
+  <span class="ruby-identifier">adjust_frame</span>(<span class="ruby-identifier">navigate_to_frame</span>(<span class="ruby-identifier">steps</span>))
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-switch_to_frame" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">switch_to_frame</span><span
+            class="method-args">(frame)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="switch_to_frame-source">
+            <pre><span class="ruby-comment"># File lib/byebug/helpers/frame.rb, line 7</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">switch_to_frame</span>(<span class="ruby-identifier">frame</span>)
+  <span class="ruby-identifier">new_frame</span> = <span class="ruby-identifier">index_from_start</span>(<span class="ruby-identifier">frame</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">frame_err</span>(<span class="ruby-string">&#39;c_frame&#39;</span>) <span class="ruby-keyword">if</span> <span class="ruby-constant">Frame</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">context</span>, <span class="ruby-identifier">new_frame</span>).<span class="ruby-identifier">c_frame?</span>
+
+  <span class="ruby-identifier">adjust_frame</span>(<span class="ruby-identifier">new_frame</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="private-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Private Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-adjust_frame" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">adjust_frame</span><span
+            class="method-args">(new_frame)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="adjust_frame-source">
+            <pre><span class="ruby-comment"># File lib/byebug/helpers/frame.rb, line 20</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">adjust_frame</span>(<span class="ruby-identifier">new_frame</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">frame_err</span>(<span class="ruby-string">&#39;too_low&#39;</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">new_frame</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-identifier">context</span>.<span class="ruby-identifier">stack_size</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">frame_err</span>(<span class="ruby-string">&#39;too_high&#39;</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">new_frame</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">0</span>
+
+  <span class="ruby-identifier">context</span>.<span class="ruby-identifier">frame</span> = <span class="ruby-identifier">new_frame</span>
+  <span class="ruby-identifier">processor</span>.<span class="ruby-identifier">prev_line</span> = <span class="ruby-keyword">nil</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-direction" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">direction</span><span
+            class="method-args">(step)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>@param step [Integer] A positive or negative integer</p>
+
+<p>@return [Integer] +1 if step is positive / -1 if negative</p>
+          
+          
+
+          
+          <div class="method-source-code" id="direction-source">
+            <pre><span class="ruby-comment"># File lib/byebug/helpers/frame.rb, line 58</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">direction</span>(<span class="ruby-identifier">step</span>)
+  <span class="ruby-identifier">step</span> <span class="ruby-operator">/</span> <span class="ruby-identifier">step</span>.<span class="ruby-identifier">abs</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-frame_err" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">frame_err</span><span
+            class="method-args">(msg)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="frame_err-source">
+            <pre><span class="ruby-comment"># File lib/byebug/helpers/frame.rb, line 49</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">frame_err</span>(<span class="ruby-identifier">msg</span>)
+  <span class="ruby-identifier">errmsg</span>(<span class="ruby-identifier">pr</span>(<span class="ruby-node">&quot;frame.errors.#{msg}&quot;</span>))
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-index_from_start" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">index_from_start</span><span
+            class="method-args">(i)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Convert a possibly negative index to a positive index from the start of the
+callstack. -1 is the last position in the stack and so on.</p>
+
+<p>@param i [Integer] Integer to be converted in a proper positive index.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="index_from_start-source">
+            <pre><span class="ruby-comment"># File lib/byebug/helpers/frame.rb, line 68</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">index_from_start</span>(<span class="ruby-identifier">i</span>)
+  <span class="ruby-identifier">i</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">0</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">i</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">context</span>.<span class="ruby-identifier">stack_size</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">i</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-navigate_to_frame" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">navigate_to_frame</span><span
+            class="method-args">(jump_no)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="navigate_to_frame-source">
+            <pre><span class="ruby-comment"># File lib/byebug/helpers/frame.rb, line 28</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">navigate_to_frame</span>(<span class="ruby-identifier">jump_no</span>)
+  <span class="ruby-identifier">current_jumps</span> = <span class="ruby-value">0</span>
+  <span class="ruby-identifier">current_pos</span> = <span class="ruby-identifier">context</span>.<span class="ruby-identifier">frame</span>.<span class="ruby-identifier">pos</span>
+
+  <span class="ruby-identifier">loop</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">current_pos</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">direction</span>(<span class="ruby-identifier">jump_no</span>)
+    <span class="ruby-keyword">break</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">out_of_bounds?</span>(<span class="ruby-identifier">current_pos</span>)
+
+    <span class="ruby-keyword">next</span> <span class="ruby-keyword">if</span> <span class="ruby-constant">Frame</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">context</span>, <span class="ruby-identifier">current_pos</span>).<span class="ruby-identifier">c_frame?</span>
+
+    <span class="ruby-identifier">current_jumps</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+    <span class="ruby-keyword">break</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_jumps</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">jump_no</span>.<span class="ruby-identifier">abs</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">current_pos</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-out_of_bounds-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">out_of_bounds?</span><span
+            class="method-args">(pos)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="out_of_bounds-3F-source">
+            <pre><span class="ruby-comment"># File lib/byebug/helpers/frame.rb, line 45</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">out_of_bounds?</span>(<span class="ruby-identifier">pos</span>)
+  <span class="ruby-operator">!</span>(<span class="ruby-value">0</span><span class="ruby-operator">...</span><span class="ruby-identifier">context</span>.<span class="ruby-identifier">stack_size</span>).<span class="ruby-identifier">cover?</span>(<span class="ruby-identifier">pos</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

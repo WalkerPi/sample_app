@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>README - mime-types-3.0 Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/darkfish.js"></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="file">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+<div class="nav-section">
+  <h3>Table of Contents</h3>
+
+  <ul class="link-list" role="directory">
+    <li><a href="#label-mime-types+for+Ruby">mime-types for Ruby</a>
+    <li><a href="#label-Description">Description</a>
+    <li><a href="#label-About+MIME+Media+Types">About MIME Media Types</a>
+    <li><a href="#label-mime-types+1.x+End+of+Life">mime-types 1.x End of Life</a>
+    <li><a href="#label-mime-types+2.x+End+of+Life">mime-types 2.x End of Life</a>
+    <li><a href="#label-mime-types+3.x">mime-types 3.x</a>
+    <li><a href="#label-Synopsis">Synopsis</a>
+    <li><a href="#label-Columnar+Store">Columnar Store</a>
+    <li><a href="#label-Cached+Storage">Cached Storage</a>
+    <li><a href="#label-mime-types+Modified+Semantic+Versioning">mime-types Modified Semantic Versioning</a>
+    <li><a href="#label-Contributor+Code+of+Conduct">Contributor Code of Conduct</a>
+    <li><a href="#label-Contributing">Contributing</a>
+    <li><a href="#label-Adding+or+Modifying+MIME+Types">Adding or Modifying MIME Types</a>
+    <li><a href="#label-Updating+Types+from+the+IANA+or+Apache+Lists">Updating Types from the IANA or Apache Lists</a>
+    <li><a href="#label-Test+Dependencies">Test Dependencies</a>
+    <li><a href="#label-Benchmarks">Benchmarks</a>
+    <li><a href="#label-Workflow">Workflow</a>
+    <li><a href="#label-Contributors">Contributors</a>
+    <li><a href="#label-Licence">Licence</a>
+    <li><a href="#label-MIT+License">MIT License</a>
+  </ul>
+</div>
+
+
+  <div id="project-metadata">
+    <div id="fileindex-section" class="nav-section">
+  <h3>Pages</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./Code-of-Conduct_rdoc.html">Code-of-Conduct</a>
+  
+    <li><a href="./Contributing_rdoc.html">Contributing</a>
+  
+    <li><a href="./History_rdoc.html">History</a>
+  
+    <li><a href="./Licence_rdoc.html">Licence</a>
+  
+    <li><a href="./Manifest_txt.html">Manifest</a>
+  
+    <li><a href="./README_rdoc.html">README</a>
+  
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-label="Page README.rdoc">
+
+<h1 id="label-mime-types+for+Ruby">mime-types for Ruby<span><a href="#label-mime-types+for+Ruby">&para;</a> <a href="#top">&uarr;</a></span></h1>
+<dl class="rdoc-list note-list"><dt>home 
+<dd>
+<p><a
+href="https://github.com/mime-types/ruby-mime-types">github.com/mime-types/ruby-mime-types</a>/</p>
+</dd><dt>code 
+<dd>
+<p><a
+href="https://github.com/mime-types/ruby-mime-types">github.com/mime-types/ruby-mime-types</a>/</p>
+</dd><dt>bugs 
+<dd>
+<p><a
+href="https://github.com/mime-types/ruby-mime-types/issues">github.com/mime-types/ruby-mime-types/issues</a></p>
+</dd><dt>rdoc 
+<dd>
+<p><a href="http://rdoc.info/gems/mime-types">rdoc.info/gems/mime-types</a>/</p>
+</dd><dt>continuous integration 
+<dd>
+<p><a href="https://travis-ci.org/mime-types/ruby-mime-types"><img
+src="https://travis-ci.org/mime-types/ruby-mime-types.png" /></a></p>
+</dd><dt>test coverage 
+<dd>
+<p><a href="https://coveralls.io/r/mime-types/ruby-mime-types"><img
+src="https://coveralls.io/repos/mime-types/ruby-mime-types/badge.png"
+alt="Coverage Status" /></a></p>
+</dd></dl>
+
+<h2 id="label-Description">Description<span><a href="#label-Description">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>The mime-types library provides a library and registry for information
+about <a href="MIME.html">MIME</a> content type definitions. It can be used
+to determine defined filename extensions for <a href="MIME.html">MIME</a>
+types, or to use filename extensions to look up the likely <a
+href="MIME.html">MIME</a> type definitions.</p>
+
+<p>Version 3.0 is a major release that requires Ruby 2.0 compatibility and
+removes deprecated functions. The columnar registry format introduced in
+2.6 has been made the primary format; the registry data has been extracted
+from this library and put into <a
+href="https://github.com/mime-types/mime-types-data">mime-types-data</a>.
+Additionally, mime-types is now licensed exclusively under the MIT licence
+and there is a code of conduct in effect. There are a number of other
+smaller changes described in the <a href="History_rdoc.html">History</a>
+file.</p>
+
+<h3 id="label-About+MIME+Media+Types">About <a href="MIME.html">MIME</a> Media Types<span><a href="#label-About+MIME+Media+Types">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p><a href="MIME.html">MIME</a> content types are used in MIME-compliant
+communications, as in e-mail or HTTP traffic, to indicate the type of
+content which is transmitted. The mime-types library provides the ability
+for detailed information about <a href="MIME.html">MIME</a> entities
+(provided as an enumerable collection of <a
+href="MIME/Type.html">MIME::Type</a> objects) to be determined and used.
+There are many types defined by RFCs and vendors, so the list is long but
+by definition incomplete; don&#39;t hesitate to add additional type
+definitions. <a href="MIME.html">MIME</a> type definitions found in
+mime-types are from RFCs, W3C recommendations, the <a
+href="https://www.iana.org/assignments/media-types/media-types.xhtml">IANA
+Media Types registry</a>, and user contributions. It conforms to RFCs 2045
+and 2231.</p>
+
+<h3 id="label-mime-types+1.x+End+of+Life">mime-types 1.x End of Life<span><a href="#label-mime-types+1.x+End+of+Life">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>mime-types 1.x is no longer supported as of 2015-10-27.</p>
+
+<h3 id="label-mime-types+2.x+End+of+Life">mime-types 2.x End of Life<span><a href="#label-mime-types+2.x+End+of+Life">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>mime-types 2.x is supported as 2.99.x receiving quarterly updates of the
+IANA registry and security updates for two years. It will reach full end of
+life on 2017-11-21.</p>
+
+<h3 id="label-mime-types+3.x">mime-types 3.x<span><a href="#label-mime-types+3.x">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>Users are encouraged to upgrade to mime-types 3.x as soon as is practical.
+mime-types 3.x requires Ruby 2.0 compatibility and a simpler licensing
+scheme.</p>
+
+<h2 id="label-Synopsis">Synopsis<span><a href="#label-Synopsis">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p><a href="MIME.html">MIME</a> types are used in <a href="MIME.html">MIME</a>
+entities, as in email or HTTP traffic. It is useful at times to have
+information available about <a href="MIME.html">MIME</a> types (or,
+inversely, about files). A <a href="MIME/Type.html">MIME::Type</a> stores
+the known information about one <a href="MIME.html">MIME</a> type.</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;mime/types&#39;</span>
+
+<span class="ruby-identifier">plaintext</span> = <span class="ruby-constant">MIME</span><span class="ruby-operator">::</span><span class="ruby-constant">Types</span>[<span class="ruby-string">&#39;text/plain&#39;</span>] <span class="ruby-comment"># =&gt; [ text/plain ]</span>
+<span class="ruby-identifier">text</span> = <span class="ruby-identifier">plaintext</span>.<span class="ruby-identifier">first</span>
+<span class="ruby-identifier">puts</span> <span class="ruby-identifier">text</span>.<span class="ruby-identifier">media_type</span>            <span class="ruby-comment"># =&gt; &#39;text&#39;</span>
+<span class="ruby-identifier">puts</span> <span class="ruby-identifier">text</span>.<span class="ruby-identifier">sub_type</span>              <span class="ruby-comment"># =&gt; &#39;plain&#39;</span>
+
+<span class="ruby-identifier">puts</span> <span class="ruby-identifier">text</span>.<span class="ruby-identifier">extensions</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&#39; &#39;</span>)  <span class="ruby-comment"># =&gt; &#39;txt asc c cc h hh cpp hpp dat hlp&#39;</span>
+<span class="ruby-identifier">puts</span> <span class="ruby-identifier">text</span>.<span class="ruby-identifier">preferred_extension</span>   <span class="ruby-comment"># =&gt; &#39;txt&#39;</span>
+<span class="ruby-identifier">puts</span> <span class="ruby-identifier">text</span>.<span class="ruby-identifier">friendly</span>              <span class="ruby-comment"># =&gt; &#39;Text Document&#39;</span>
+<span class="ruby-identifier">puts</span> <span class="ruby-identifier">text</span>.<span class="ruby-identifier">i18n_key</span>              <span class="ruby-comment"># =&gt; &#39;text.plain&#39;</span>
+
+<span class="ruby-identifier">puts</span> <span class="ruby-identifier">text</span>.<span class="ruby-identifier">encoding</span>              <span class="ruby-comment"># =&gt; quoted-printable</span>
+<span class="ruby-identifier">puts</span> <span class="ruby-identifier">text</span>.<span class="ruby-identifier">default_encoding</span>      <span class="ruby-comment"># =&gt; quoted-printable</span>
+<span class="ruby-identifier">puts</span> <span class="ruby-identifier">text</span>.<span class="ruby-identifier">binary?</span>               <span class="ruby-comment"># =&gt; false</span>
+<span class="ruby-identifier">puts</span> <span class="ruby-identifier">text</span>.<span class="ruby-identifier">ascii?</span>                <span class="ruby-comment"># =&gt; true</span>
+<span class="ruby-identifier">puts</span> <span class="ruby-identifier">text</span>.<span class="ruby-identifier">obsolete?</span>             <span class="ruby-comment"># =&gt; false</span>
+<span class="ruby-identifier">puts</span> <span class="ruby-identifier">text</span>.<span class="ruby-identifier">registered?</span>           <span class="ruby-comment"># =&gt; true</span>
+<span class="ruby-identifier">puts</span> <span class="ruby-identifier">text</span>.<span class="ruby-identifier">complete?</span>             <span class="ruby-comment"># =&gt; true</span>
+
+<span class="ruby-identifier">puts</span> <span class="ruby-identifier">text</span>                       <span class="ruby-comment"># =&gt; &#39;text/plain&#39;</span>
+
+<span class="ruby-identifier">puts</span> <span class="ruby-identifier">text</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;text/plain&#39;</span>       <span class="ruby-comment"># =&gt; true</span>
+<span class="ruby-identifier">puts</span> <span class="ruby-string">&#39;text/plain&#39;</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">text</span>       <span class="ruby-comment"># =&gt; true</span>
+<span class="ruby-identifier">puts</span> <span class="ruby-identifier">text</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;text/x-plain&#39;</span>     <span class="ruby-comment"># =&gt; false</span>
+<span class="ruby-identifier">puts</span> <span class="ruby-string">&#39;text/x-plain&#39;</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">text</span>     <span class="ruby-comment"># =&gt; false</span>
+
+<span class="ruby-identifier">puts</span> <span class="ruby-constant">MIME</span><span class="ruby-operator">::</span><span class="ruby-constant">Type</span>.<span class="ruby-identifier">simplified</span>(<span class="ruby-string">&#39;x-appl/x-zip&#39;</span>) <span class="ruby-comment"># =&gt; &#39;appl/zip&#39;</span>
+<span class="ruby-identifier">puts</span> <span class="ruby-constant">MIME</span><span class="ruby-operator">::</span><span class="ruby-constant">Type</span>.<span class="ruby-identifier">i18n_key</span>(<span class="ruby-string">&#39;x-appl/x-zip&#39;</span>) <span class="ruby-comment"># =&gt; &#39;appl.zip&#39;</span>
+
+<span class="ruby-identifier">puts</span> <span class="ruby-identifier">text</span>.<span class="ruby-identifier">like?</span>(<span class="ruby-string">&#39;text/x-plain&#39;</span>) <span class="ruby-comment"># =&gt; true</span>
+<span class="ruby-identifier">puts</span> <span class="ruby-identifier">text</span>.<span class="ruby-identifier">like?</span>(<span class="ruby-constant">MIME</span><span class="ruby-operator">::</span><span class="ruby-constant">Type</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;x-text/x-plain&#39;</span>)) <span class="ruby-comment"># =&gt; true</span>
+
+<span class="ruby-identifier">puts</span> <span class="ruby-identifier">text</span>.<span class="ruby-identifier">xrefs</span>.<span class="ruby-identifier">inspect</span> <span class="ruby-comment"># =&gt; { &quot;rfc&quot; =&gt; [ &quot;rfc2046&quot;, &quot;rfc3676&quot;, &quot;rfc5147&quot; ] }</span>
+<span class="ruby-identifier">puts</span> <span class="ruby-identifier">text</span>.<span class="ruby-identifier">xref_urls</span> <span class="ruby-comment"># =&gt; [ &quot;http://www.iana.org/go/rfc2046&quot;,</span>
+                    <span class="ruby-comment">#      &quot;http://www.iana.org/go/rfc3676&quot;,</span>
+                    <span class="ruby-comment">#      &quot;http://www.iana.org/go/rfc5147&quot; ]</span>
+
+<span class="ruby-identifier">xtext</span> = <span class="ruby-constant">MIME</span><span class="ruby-operator">::</span><span class="ruby-constant">Type</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;x-text/x-plain&#39;</span>)
+<span class="ruby-identifier">puts</span> <span class="ruby-identifier">xtext</span>.<span class="ruby-identifier">media_type</span> <span class="ruby-comment"># =&gt; &#39;text&#39;</span>
+<span class="ruby-identifier">puts</span> <span class="ruby-identifier">xtext</span>.<span class="ruby-identifier">raw_media_type</span> <span class="ruby-comment"># =&gt; &#39;x-text&#39;</span>
+<span class="ruby-identifier">puts</span> <span class="ruby-identifier">xtext</span>.<span class="ruby-identifier">sub_type</span> <span class="ruby-comment"># =&gt; &#39;plain&#39;</span>
+<span class="ruby-identifier">puts</span> <span class="ruby-identifier">xtext</span>.<span class="ruby-identifier">raw_sub_type</span> <span class="ruby-comment"># =&gt; &#39;x-plain&#39;</span>
+<span class="ruby-identifier">puts</span> <span class="ruby-identifier">xtext</span>.<span class="ruby-identifier">complete?</span> <span class="ruby-comment"># =&gt; false</span>
+
+<span class="ruby-identifier">puts</span> <span class="ruby-constant">MIME</span><span class="ruby-operator">::</span><span class="ruby-constant">Types</span>.<span class="ruby-identifier">any?</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">type</span><span class="ruby-operator">|</span> <span class="ruby-identifier">type</span>.<span class="ruby-identifier">content_type</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;text/plain&#39;</span> } <span class="ruby-comment"># =&gt; true</span>
+<span class="ruby-identifier">puts</span> <span class="ruby-constant">MIME</span><span class="ruby-operator">::</span><span class="ruby-constant">Types</span>.<span class="ruby-identifier">all?</span>(<span class="ruby-operator">&amp;</span>:<span class="ruby-identifier">registered?</span>) <span class="ruby-comment"># =&gt; false</span>
+
+<span class="ruby-comment"># Various string representations of MIME types</span>
+<span class="ruby-identifier">qcelp</span> = <span class="ruby-constant">MIME</span><span class="ruby-operator">::</span><span class="ruby-constant">Types</span>[<span class="ruby-string">&#39;audio/QCELP&#39;</span>].<span class="ruby-identifier">first</span> <span class="ruby-comment"># =&gt; audio/QCELP</span>
+<span class="ruby-identifier">puts</span> <span class="ruby-identifier">qcelp</span>.<span class="ruby-identifier">content_type</span>         <span class="ruby-comment"># =&gt; &#39;audio/QCELP&#39;</span>
+<span class="ruby-identifier">puts</span> <span class="ruby-identifier">qcelp</span>.<span class="ruby-identifier">simplified</span>           <span class="ruby-comment"># =&gt; &#39;audio/qcelp&#39;</span>
+
+<span class="ruby-identifier">xwingz</span> = <span class="ruby-constant">MIME</span><span class="ruby-operator">::</span><span class="ruby-constant">Types</span>[<span class="ruby-string">&#39;application/x-Wingz&#39;</span>].<span class="ruby-identifier">first</span> <span class="ruby-comment"># =&gt; application/x-Wingz</span>
+<span class="ruby-identifier">puts</span> <span class="ruby-identifier">xwingz</span>.<span class="ruby-identifier">content_type</span>        <span class="ruby-comment"># =&gt; &#39;application/x-Wingz&#39;</span>
+<span class="ruby-identifier">puts</span> <span class="ruby-identifier">xwingz</span>.<span class="ruby-identifier">simplified</span>          <span class="ruby-comment"># =&gt; &#39;application/wingz&#39;</span>
+</pre>
+
+<h3 id="label-Columnar+Store">Columnar Store<span><a href="#label-Columnar+Store">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>mime-types uses as its primary registry storage format a columnar storage
+format reducing the default memory footprint. This is done by selectively
+loading the data on a per-attribute basis. When the registry is first
+loaded from the columnar store, only the canonical <a
+href="MIME.html">MIME</a> content type and known extensions and the <a
+href="MIME.html">MIME</a> type will be connected to its loading registry.
+When other data about the type is required (including
+<code>preferred_extension</code>, <code>obsolete?</code>, and
+<code>registered?</code>) that data is loaded from its own column file for
+all types in the registry.</p>
+
+<p>The load of any column data is performed with a Mutex to ensure that types
+are updated safely in a multithreaded environment. Benchmarks show that
+while columnar data loading is slower than the JSON store, it cuts the
+memory use by a third over the JSON store.</p>
+
+<p>If you prefer to load all the data at once, this can be specified in your
+application Gemfile as:</p>
+
+<pre class="ruby"><span class="ruby-identifier">gem</span> <span class="ruby-string">&#39;mime-types&#39;</span>, <span class="ruby-identifier">require</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;mime/types/full&#39;</span>
+</pre>
+
+<p>Projects that do not use Bundler should <code>require</code> the same:</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;mime/types/full&#39;</span>
+</pre>
+
+<p>Libraries that use mime-types are discouraged from choosing the JSON store.</p>
+
+<p>For applications and clients that used mime-types 2.6 when the columnar
+store was introduced, the require used previously will still work through
+at least <a
+href="https://github.com/mime-types/ruby-mime-types/pull/96#issuecomment-100725400">version
+4</a> and possibly beyond; it is effectively an empty operation. You are
+recommended to change your Gemfile as soon as is practical.</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;mime/types/columnar&#39;</span>
+</pre>
+
+<p>Note that <a href="MIME/Type/Columnar.html">MIME::Type::Columnar</a> and <a
+href="MIME/Types/Columnar.html">MIME::Types::Columnar</a> are considered
+private variant implementations of <a href="MIME/Type.html">MIME::Type</a>
+and <a href="MIME/Types.html">MIME::Types</a> and the specific
+implementation should not be relied upon by consumers of the mime-types
+library. Instead, depend on the public implementations (MIME::Type and <a
+href="MIME/Types.html">MIME::Types</a>) only.</p>
+
+<h3 id="label-Cached+Storage">Cached Storage<span><a href="#label-Cached+Storage">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>mime-types supports a cache of <a href="MIME.html">MIME</a> types using
+<code>Marshal.dump</code>. The cache is invalidated for each version of the
+mime-types-data gem so that data version 3.2015.1201 will not be reused
+with data version 3.2016.0101. If the environment variable
+<code>RUBY_MIME_TYPES_CACHE</code> is set to a cache file, mime-types will
+attempt to load the <a href="MIME.html">MIME</a> type registry from the
+cache file. If it cannot, it will load the types normally and then saves
+the registry to the cache file.</p>
+
+<p>The caching works with both full stores and columnar stores. Only the data
+that has been loaded prior to saving the cache will be stored.</p>
+
+<h2 id="label-mime-types+Modified+Semantic+Versioning">mime-types Modified Semantic Versioning<span><a href="#label-mime-types+Modified+Semantic+Versioning">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>The mime-types library has one version number, but this single version
+number tracks both API changes and registry data changes; this is not
+wholly compatible with all aspects of <a href="http://semver.org/">Semantic
+Versioning</a>; removing a <a href="MIME.html">MIME</a> type from the
+registry <strong>could</strong> be considered a breaking change under some
+interpretations of semantic versioning (as lookups for that particular type
+would no longer work by default).</p>
+
+<p>mime-types uses a modified semantic versioning scheme. Given the version
+MAJOR.MINOR:</p>
+<ol><li>
+<p>If an incompatible API (code) change is made, the MAJOR version will be
+incremented, MINOR will be set to zero, and PATCH will be reset to the
+implied zero.</p>
+</li><li>
+<p>If an API (code) feature is added that does not break compatibilty OR if
+there are <a href="MIME.html">MIME</a> types added, removed, or changed in
+the registry, the MINOR version will be incremented and PATCH will be reset
+to the implied zero.</p>
+</li><li>
+<p>If there is a bugfix to a feature added in the most recent MAJOR.MINOR
+release, OR if purely typographical errors are fixed in <a
+href="MIME.html">MIME</a> types, the implied PATCH value will be
+incremented resulting in MAJOR.MINOR.PATCH.</p>
+</li></ol>
+
+<p>In practical terms, there should be a MINOR release roughly monthly to
+track updated or changed <a href="MIME.html">MIME</a> types from the
+official IANA registry. This does not indicate when new API features have
+been added, but all minor versions of mime-types 2.x will be backwards
+compatible; the interfaces marked deprecated will be removed in mime-types
+3.x.</p>
+
+<h2 id="label-Contributor+Code+of+Conduct">Contributor Code of Conduct<span><a href="#label-Contributor+Code+of+Conduct">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>As contributors and maintainers of this project, and in the interest of
+fostering an open and welcoming community, we pledge to respect all people
+who contribute through reporting issues, posting feature requests, updating
+documentation, submitting pull requests or patches, and other activities.</p>
+
+<p>We are committed to making participation in this project a harassment-free
+experience for everyone, regardless of level of experience, gender, gender
+identity and expression, sexual orientation, disability, personal
+appearance, body size, race, ethnicity, age, religion, or nationality.</p>
+
+<p>Examples of unacceptable behavior by participants include:</p>
+<ul><li>
+<p>The use of sexualized language or imagery</p>
+</li><li>
+<p>Personal attacks</p>
+</li><li>
+<p>Trolling or insulting/derogatory comments</p>
+</li><li>
+<p>Public or private harassment</p>
+</li><li>
+<p>Publishing other&#39;s private information, such as physical or electronic
+addresses, without explicit permission</p>
+</li><li>
+<p>Other unethical or unprofessional conduct.</p>
+</li></ul>
+
+<p>Project maintainers have the right and responsibility to remove, edit, or
+reject comments, commits, code, wiki edits, issues, and other contributions
+that are not aligned to this Code of Conduct. By adopting this Code of
+Conduct, project maintainers commit themselves to fairly and consistently
+applying these principles to every aspect of managing this project. Project
+maintainers who do not follow or enforce the Code of Conduct may be
+permanently removed from the project team.</p>
+
+<p>This code of conduct applies both within project spaces and in public
+spaces when an individual is representing the project or its community.</p>
+
+<p>Instances of abusive, harassing, or otherwise unacceptable behavior may be
+reported by opening an issue or contacting one or more of the project
+maintainers.</p>
+
+<p>This Code of Conduct is adapted from the <a
+href="http://contributor-covenant.org">Contributor Covenant</a>, version
+1.2.0, available at <a
+href="http://contributor-covenant.org/version/1/2/0/">contributor-covenant.org/version/1/2/0/</a>.</p>
+
+<h2 id="label-Contributing"><a href="Contributing_rdoc.html">Contributing</a><span><a href="#label-Contributing">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>I value any contribution to mime-types you can provide: a bug report, a
+feature request, or code contributions.</p>
+
+<p>There are a few guidelines for contributing to mime-types:</p>
+<ul><li>
+<p>Code changes <strong>will</strong> <strong>not</strong> be accepted without
+tests. The test suite is written with <a
+href="https://github.com/seattlerb/minitest">Minitest</a>.</p>
+</li><li>
+<p>Match my coding style.</p>
+</li><li>
+<p>Use a thoughtfully-named topic branch that contains your change. Rebase
+your commits into logical chunks as necessary.</p>
+</li><li>
+<p>Use <a
+href="http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html">quality
+commit messages</a>.</p>
+</li><li>
+<p>Do not change the version number; when your patch is accepted and a release
+is made, the version will be updated at that point.</p>
+</li><li>
+<p>Submit a GitHub pull request with your changes.</p>
+</li><li>
+<p>New or changed behaviours require new or updated documentation.</p>
+</li></ul>
+
+<h3 id="label-Adding+or+Modifying+MIME+Types">Adding or Modifying <a href="MIME.html">MIME</a> Types<span><a href="#label-Adding+or+Modifying+MIME+Types">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>The mime-types registry is loaded from encoded files in <code>data</code>.
+These are not editable and cannot be compared meaningfully in a pull
+request; pull requests that include changes to these files will require
+amendment to revert these files.</p>
+
+<p>New or modified <a href="MIME.html">MIME</a> types should be edited in the
+appropriate YAML file under <code>type-lists</code>. The format is as shown
+below for the <code>application/xml</code> <a href="MIME.html">MIME</a>
+type in <code>type-lists/application.yml</code>.</p>
+
+<pre>- !ruby/object:MIME::Type
+  content-type: application/xml
+  encoding: 8bit
+  extensions:
+  - xml
+  - xsl
+  xrefs: !ruby/hash:MIME::Types::Container
+    rfc:
+    - rfc3023
+  registered: true</pre>
+
+<p>There are other fields that can be added, matching the fields discussed in
+the documentation for <a href="MIME/Type.html">MIME::Type</a>. Pull
+requests for <a href="MIME.html">MIME</a> types should just contain the
+changes to the YAML files for the new or modified <a
+href="MIME.html">MIME</a> types; I will convert the YAML files to JSON
+prior to a new release. I would rather not have to verify that the JSON
+matches the YAML changes, which is why it is not necessary to convert for
+the pull request.</p>
+
+<p>If you are making a change for a private fork, use <code>rake
+convert:yaml:json</code> to convert the YAML to JSON, or <code>rake
+convert:yaml:columnar</code> to convert it to the new columnar format.</p>
+
+<h4 id="label-Updating+Types+from+the+IANA+or+Apache+Lists">Updating Types from the IANA or Apache Lists<span><a href="#label-Updating+Types+from+the+IANA+or+Apache+Lists">&para;</a> <a href="#top">&uarr;</a></span></h4>
+
+<p>If you are maintaining a private fork and wish to update your copy of the
+<a href="MIME.html">MIME</a> types registry used by this gem, you can do
+this with the rake tasks:</p>
+
+<pre>$ rake mime:iana
+$ rake mime:apache</pre>
+
+<p>Both of these require <a
+href="http://www.nokogiri.org/tutorials/installing_nokogiri.html">Nokogiri</a>,
+which is not installed by default. Install it in the usual way for your
+Ruby.</p>
+
+<h3 id="label-Test+Dependencies">Test Dependencies<span><a href="#label-Test+Dependencies">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>mime-types uses Ryan Davis’s <a
+href="https://github.com/seattlerb/hoe">Hoe</a> to manage the release
+process, and it adds a number of rake tasks. You will mostly be interested
+in:</p>
+
+<pre>$ rake</pre>
+
+<p>which runs the tests the same way that:</p>
+
+<pre>$ rake test
+$ rake travis</pre>
+
+<p>will do.</p>
+
+<p>To assist with the installation of the development dependencies for
+mime-types, I have provided the simplest possible Gemfile pointing to the
+(generated) <code>mime-types.gemspec</code> file. This will permit you to
+do:</p>
+
+<pre>$ bundle install</pre>
+
+<p>to get the development dependencies. If you aleady have <code>hoe</code>
+installed, you can accomplish the same thing with:</p>
+
+<pre>$ rake newb</pre>
+
+<p>This task will install any missing dependencies, run the tests/specs, and
+generate the RDoc.</p>
+
+<p>You can run tests with code coverage analysis by running:</p>
+
+<pre>$ rake test:coverage</pre>
+
+<h3 id="label-Benchmarks">Benchmarks<span><a href="#label-Benchmarks">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>mime-types offers several benchmark tasks to measure different measures of
+performance.</p>
+
+<p>There is a repeated load test, measuring how long it takes to start and
+load mime-types with its full registry. By default, it runs fifty loops and
+uses the built-in benchmark library.</p>
+
+<pre>$ rake benchmark:load</pre>
+
+<p>There are two allocation tracing benchmarks (for normal and columnar
+loads). These can only be run on Ruby 2.1 or better and requires the <a
+href="https://github.com/ko1/allocation_tracer">allocation_tracer</a> gem
+(not installed by default).</p>
+
+<pre>$ rake benchmark:allocations
+$ rake benchmark:allocations:columnar</pre>
+
+<p>There are two loaded object count benchmarks (for normal and columnar
+loads). These use <code>ObjectSpace.count_objects</code>.</p>
+
+<pre>$ rake benchmark:objects
+$ rake benchmark:objects:columnar</pre>
+
+<h3 id="label-Workflow">Workflow<span><a href="#label-Workflow">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>Here&#39;s the most direct way to get your work merged into the project:</p>
+<ul><li>
+<p>Fork the project.</p>
+</li><li>
+<p>Clone down your fork (<code>git clone
+git://github.com/&lt;username&gt;/ruby-mime-types.git</code>).</p>
+</li><li>
+<p>Create a topic branch to contain your change (<code>git checkout -b
+my_awesome_feature</code>).</p>
+</li><li>
+<p>Hack away, add tests. Not necessarily in that order.</p>
+</li><li>
+<p>Make sure everything still passes by running <code>rake</code>.</p>
+</li><li>
+<p>If necessary, rebase your commits into logical chunks, without errors.</p>
+</li><li>
+<p>Push the branch up (<code>git push origin my_awesome_feature</code>).</p>
+</li><li>
+<p>Create a pull request against mime-types/ruby-mime-types and describe what
+your change does and the why you think it should be merged.</p>
+</li></ul>
+
+<h3 id="label-Contributors">Contributors<span><a href="#label-Contributors">&para;</a> <a href="#top">&uarr;</a></span></h3>
+<ul><li>
+<p>Austin Ziegler created mime-types.</p>
+</li></ul>
+
+<p>Thanks to everyone else who has contributed to mime-types:</p>
+<ul><li>
+<p>Aaron Patterson</p>
+</li><li>
+<p>Aggelos Avgerinos</p>
+</li><li>
+<p>Andre Pankratz</p>
+</li><li>
+<p>Andy Brody</p>
+</li><li>
+<p>Arnaud Meuret</p>
+</li><li>
+<p>Brandon Galbraith</p>
+</li><li>
+<p>Chris Gat</p>
+</li><li>
+<p>David Genord</p>
+</li><li>
+<p>Eric Marden</p>
+</li><li>
+<p>Garret Alfert</p>
+</li><li>
+<p>Godfrey Chan</p>
+</li><li>
+<p>Greg Brockman</p>
+</li><li>
+<p>Hans de Graaff</p>
+</li><li>
+<p>Henrik Hodne</p>
+</li><li>
+<p>Jeremy Evans</p>
+</li><li>
+<p>Juanito Fatas</p>
+</li><li>
+<p>Łukasz Śliwa</p>
+</li><li>
+<p>Keerthi Siva</p>
+</li><li>
+<p>Ken Ip</p>
+</li><li>
+<p>Martin d&#39;Allens</p>
+</li><li>
+<p>Mauricio Linhares</p>
+</li><li>
+<p>nycvotes-dev</p>
+</li><li>
+<p>Postmodern</p>
+</li><li>
+<p>Richard Hirner</p>
+</li><li>
+<p>Richard Hurt</p>
+</li><li>
+<p>Richard Schneeman</p>
+</li><li>
+<p>Tibor Szolár</p>
+</li><li>
+<p>Todd Carrico</p>
+</li></ul>
+
+<h2 id="label-Licence"><a href="Licence_rdoc.html">Licence</a><span><a href="#label-Licence">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<ul><li>
+<p>Copyright 2003–2015 Austin Ziegler.</p>
+</li></ul>
+
+<p>The software in this repository is made available under the MIT license.</p>
+
+<h3 id="label-MIT+License">MIT License<span><a href="#label-MIT+License">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining a
+copy of this software and associated documentation files (the “Software”),
+to deal in the Software without restriction, including without limitation
+the rights to use, copy, modify, merge, publish, distribute, sublicense,
+and/or sell copies of the Software, and to permit persons to whom the
+Software is furnished to do so, subject to the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+DEALINGS IN THE SOFTWARE.</p>
+</main>
+
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

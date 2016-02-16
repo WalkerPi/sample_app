@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module SDoc::Templatable - sdoc-0.4.1 Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+</script>
+
+<script src="../js/jquery.js"></script>
+<script src="../js/darkfish.js"></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-eval_template">#eval_template</a>
+    
+    <li ><a href="#method-i-include_template">#include_template</a>
+    
+    <li ><a href="#method-i-render_template">#render_template</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-SDoc::Templatable">
+  <h1 id="module-SDoc::Templatable" class="module">
+    module SDoc::Templatable
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-eval_template" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">eval_template</span><span
+            class="method-args">(templatefile, context)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Load and render the erb template in the given <code>templatefile</code>
+within the specified <code>context</code> (a Binding object) and return
+output Both <code>templatefile</code> and <code>outfile</code> should be
+Pathname-like objects.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="eval_template-source">
+            <pre><span class="ruby-comment"># File lib/sdoc/templatable.rb, line 8</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">eval_template</span>(<span class="ruby-identifier">templatefile</span>, <span class="ruby-identifier">context</span>)
+  <span class="ruby-identifier">template_src</span> = <span class="ruby-identifier">templatefile</span>.<span class="ruby-identifier">read</span>
+  <span class="ruby-identifier">template</span> = <span class="ruby-constant">ERB</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">template_src</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-string">&#39;&lt;&gt;&#39;</span> )
+  <span class="ruby-identifier">template</span>.<span class="ruby-identifier">filename</span> = <span class="ruby-identifier">templatefile</span>.<span class="ruby-identifier">to_s</span>
+
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-identifier">template</span>.<span class="ruby-identifier">result</span>( <span class="ruby-identifier">context</span> )
+  <span class="ruby-keyword">rescue</span> <span class="ruby-constant">NoMethodError</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">err</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">RDoc</span><span class="ruby-operator">::</span><span class="ruby-constant">Error</span>, <span class="ruby-string">&quot;Error while evaluating %s: %s (at %p)&quot;</span> <span class="ruby-operator">%</span> [
+      <span class="ruby-identifier">templatefile</span>.<span class="ruby-identifier">to_s</span>,
+      <span class="ruby-identifier">err</span>.<span class="ruby-identifier">message</span>,
+      <span class="ruby-identifier">eval</span>( <span class="ruby-string">&quot;_erbout[-50,50]&quot;</span>, <span class="ruby-identifier">context</span> )
+      ], <span class="ruby-identifier">err</span>.<span class="ruby-identifier">backtrace</span>
+    <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-include_template" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">include_template</span><span
+            class="method-args">(template_name, local_assigns = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Load and render the erb template with the given <code>template_name</code>
+within current context. Adds all <code>local_assigns</code> to context</p>
+          
+          
+
+          
+          <div class="method-source-code" id="include_template-source">
+            <pre><span class="ruby-comment"># File lib/sdoc/templatable.rb, line 26</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">include_template</span>(<span class="ruby-identifier">template_name</span>, <span class="ruby-identifier">local_assigns</span> = {})
+  <span class="ruby-identifier">source</span> = <span class="ruby-identifier">local_assigns</span>.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">key</span><span class="ruby-operator">|</span> <span class="ruby-node">&quot;#{key} = local_assigns[:#{key}];&quot;</span> }.<span class="ruby-identifier">join</span>
+  <span class="ruby-identifier">templatefile</span> = <span class="ruby-ivar">@template_dir</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">template_name</span>
+  <span class="ruby-identifier">eval</span>(<span class="ruby-node">&quot;#{source};eval_template(templatefile, binding)&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-render_template" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">render_template</span><span
+            class="method-args">( templatefile, context, outfile )</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Load and render the erb template in the given <code>templatefile</code>
+within the specified <code>context</code> (a Binding object) and write it
+out to <code>outfile</code>. Both <code>templatefile</code> and
+<code>outfile</code> should be Pathname-like objects.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="render_template-source">
+            <pre><span class="ruby-comment"># File lib/sdoc/templatable.rb, line 35</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">render_template</span>( <span class="ruby-identifier">templatefile</span>, <span class="ruby-identifier">context</span>, <span class="ruby-identifier">outfile</span> )
+  <span class="ruby-identifier">output</span> = <span class="ruby-identifier">eval_template</span>(<span class="ruby-identifier">templatefile</span>, <span class="ruby-identifier">context</span>)
+
+  <span class="ruby-comment"># TODO delete this dirty hack when documentation for example for GeneratorMethods will not be cutted off by &lt;script&gt; tag</span>
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">output</span>.<span class="ruby-identifier">respond_to?</span> <span class="ruby-value">:force_encoding</span>
+      <span class="ruby-identifier">encoding</span> = <span class="ruby-identifier">output</span>.<span class="ruby-identifier">encoding</span>
+      <span class="ruby-identifier">output</span> = <span class="ruby-identifier">output</span>.<span class="ruby-identifier">force_encoding</span>(<span class="ruby-string">&#39;ASCII-8BIT&#39;</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-string">&#39;&lt;script&gt;&#39;</span>, <span class="ruby-string">&#39;&amp;lt;script;&amp;gt;&#39;</span>).<span class="ruby-identifier">force_encoding</span>(<span class="ruby-identifier">encoding</span>)
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">output</span> = <span class="ruby-identifier">output</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-string">&#39;&lt;script&gt;&#39;</span>, <span class="ruby-string">&#39;&amp;lt;script&amp;gt;&#39;</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">rescue</span> <span class="ruby-constant">Exception</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">$dryrun</span>
+    <span class="ruby-identifier">outfile</span>.<span class="ruby-identifier">dirname</span>.<span class="ruby-identifier">mkpath</span>
+    <span class="ruby-identifier">outfile</span>.<span class="ruby-identifier">open</span>( <span class="ruby-string">&#39;w&#39;</span>, <span class="ruby-value">0644</span> ) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">file</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">file</span>.<span class="ruby-identifier">print</span>( <span class="ruby-identifier">output</span> )
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">debug_msg</span> <span class="ruby-string">&quot;  would have written %d bytes to %s&quot;</span> <span class="ruby-operator">%</span>
+    [ <span class="ruby-identifier">output</span>.<span class="ruby-identifier">length</span>, <span class="ruby-identifier">outfile</span> ]
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

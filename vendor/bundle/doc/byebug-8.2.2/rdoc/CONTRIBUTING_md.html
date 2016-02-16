@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>CONTRIBUTING - byebug-8.2.2 Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/darkfish.js"></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="file">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+<div class="nav-section">
+  <h3>Table of Contents</h3>
+
+  <ul class="link-list" role="directory">
+    <li><a href="#label-Contributing+to+Byebug">Contributing to Byebug</a>
+    <li><a href="#label-Bug+Reports">Bug Reports</a>
+    <li><a href="#label-Development+dependencies">Development dependencies</a>
+    <li><a href="#label-Running+the+test+suite">Running the test suite</a>
+    <li><a href="#label-Code+style">Code style</a>
+    <li><a href="#label-Byebug+as+a+C-extension">Byebug as a C-extension</a>
+  </ul>
+</div>
+
+
+  <div id="project-metadata">
+    <div id="fileindex-section" class="nav-section">
+  <h3>Pages</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./CHANGELOG_md.html">CHANGELOG</a>
+  
+    <li><a href="./CONTRIBUTING_md.html">CONTRIBUTING</a>
+  
+    <li><a href="./GUIDE_md.html">GUIDE</a>
+  
+    <li><a href="./README_md.html">README</a>
+  
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-label="Page CONTRIBUTING.md">
+
+<h2 id="label-Contributing+to+Byebug">Contributing to <a href="Byebug.html">Byebug</a><span><a href="#label-Contributing+to+Byebug">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Please note that this project is released with a <a
+href="code_of_conduct.md">Contributor Code of Conduct</a>. By participating
+in this project you agree to abide by its terms.</p>
+
+<h3 id="label-Bug+Reports">Bug Reports<span><a href="#label-Bug+Reports">&para;</a> <a href="#top">&uarr;</a></span></h3>
+<ul><li>
+<p>Try to reproduce the issue against the latest revision. There might be 
+unrealeased work that fixes your problem!</p>
+</li><li>
+<p>Ensure that your issue has not already been reported.</p>
+</li><li>
+<p>Include the steps you carried out to produce the problem. If we can&#39;t 
+reproduce it, we can&#39;t fix it.</p>
+</li><li>
+<p>Include the behavior you observed along with the behavior you expected, 
+and why you expected it.</p>
+</li></ul>
+
+<h3 id="label-Development+dependencies">Development dependencies<span><a href="#label-Development+dependencies">&para;</a> <a href="#top">&uarr;</a></span></h3>
+<ul><li>
+<p><code>Byebug</code> depends on Ruby&#39;s TracePoint API provided by
+<code>ruby-core</code>. This is a  young API and a lot of bugs have been
+recently corrected, so make sure you  always have the lastest patch level
+release installed.</p>
+</li><li>
+<p>The recommended tool to manage development dependencies is
+<code>bundler</code>. Run  <code>gem install bundler</code> to install it.</p>
+</li><li>
+<p>Running <code>bundle install</code> inside a local clone of
+<code>byebug</code> will get development  dependencies installed.</p>
+</li></ul>
+
+<h3 id="label-Running+the+test+suite">Running the test suite<span><a href="#label-Running+the+test+suite">&para;</a> <a href="#top">&uarr;</a></span></h3>
+<ul><li>
+<p>Make sure you compile the C-extension using <code>bundle exec rake
+compile</code>.  Otherwise you won&#39;t be able to use
+<code>byebug</code>.</p>
+</li><li>
+<p>Run the test suite using the default rake task (<code>bundle exec
+rake</code>). This  task is composed of 2 subtasks: <code>bundle exec rake
+compile</code> &amp;&amp;  <code>bundle exec rake test</code>.</p>
+</li><li>
+<p>If you want to run specific tests, use the provided test runner, like so:</p>
+</li><li>
+<p>Specific test files. For example, <code>script/minitest_runner.rb
+test/commands/break_test.rb</code></p>
+</li><li>
+<p>Specific test classes. For example, <code>script/minitest_runner.rb
+Byebug::BreakAtLinesTestCase</code></p>
+</li><li>
+<p>Specific tests. For example, <code>script/minitest_runner.rb
+test_catch_removes_specific_catchpoint</code></p>
+</li><li>
+<p>Specific fully qualified tests. For example,
+<code>script/minitest_runner.rb
+BreakAtLinesTest#test_setting_breakpoint_sets_correct_fields</code></p>
+</li><li>
+<p>You can combine any of them and you will get the union of all filters. For
+example: <code>script/minitest_runner.rb Byebug::BreakAtLinesTestCase
+test_catch_removes_specific_catchpoint</code></p>
+</li></ul>
+
+<h3 id="label-Code+style">Code style<span><a href="#label-Code+style">&para;</a> <a href="#top">&uarr;</a></span></h3>
+<ul><li>
+<p><a href="Byebug.html">Byebug</a> uses <a
+href="https://github.com/brigade/overcommit/">overcommit</a> to enforce
+code style. Install the git hooks using  <code>bundle exec overcommit
+--install</code>. They will review your changes before they  are committed,
+checking they are consistent with the project&#39;s code style.</p>
+</li></ul>
+
+<h3 id="label-Byebug+as+a+C-extension"><a href="Byebug.html">Byebug</a> as a C-extension<span><a href="#label-Byebug+as+a+C-extension">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p><a href="Byebug.html">Byebug</a> is a gem developed as a C-extension. The
+debugger internal&#39;s functionality is implemented in C (the interaction
+with the TracePoint API). The rest of the gem is implemented in Ruby.
+Normally you won&#39;t need to touch the C-extension, but it will obviously
+depended on the bug you&#39;re trying to fix or the feature you are willing
+to add. You can learn more about C-extensions <a
+href="http://tenderlovemaking.com/2009/12/18/writing-ruby-c-extensions-part-1.html">here</a>
+or <a
+href="http://tenderlovemaking.com/2010/12/11/writing-ruby-c-extensions-part-2.html">here</a>.</p>
+</main>
+
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

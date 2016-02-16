@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>README - sdoc-0.4.1 Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/darkfish.js"></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="file">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+<div class="nav-section">
+  <h3>Table of Contents</h3>
+
+  <ul class="link-list" role="directory">
+    <li><a href="#label-SDoc">SDoc</a>
+    <li><a href="#label-What+is+sdoc-3F">What is sdoc?</a>
+    <li><a href="#label-Getting+Started">Getting Started</a>
+    <li><a href="#label-sdoc">sdoc</a>
+    <li><a href="#label-sdoc-merge">sdoc-merge</a>
+    <li><a href="#label-Rake+Task">Rake Task</a>
+    <li><a href="#label-Who-3F">Who?</a>
+  </ul>
+</div>
+
+
+  <div id="project-metadata">
+    <div id="fileindex-section" class="nav-section">
+  <h3>Pages</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./README_md.html">README</a>
+  
+    <li><a href="./lib/rdoc/generator/template/merge/index_rhtml.html">index.rhtml</a>
+  
+    <li><a href="./lib/rdoc/generator/template/rails/_context_rhtml.html">_context.rhtml</a>
+  
+    <li><a href="./lib/rdoc/generator/template/rails/_head_rhtml.html">_head.rhtml</a>
+  
+    <li><a href="./lib/rdoc/generator/template/rails/class_rhtml.html">class.rhtml</a>
+  
+    <li><a href="./lib/rdoc/generator/template/rails/file_rhtml.html">file.rhtml</a>
+  
+    <li><a href="./lib/rdoc/generator/template/rails/index_rhtml.html">index.rhtml</a>
+  
+    <li><a href="./lib/rdoc/generator/template/rails/resources/css/github_css.html">github.css</a>
+  
+    <li><a href="./lib/rdoc/generator/template/rails/resources/css/main_css.html">main.css</a>
+  
+    <li><a href="./lib/rdoc/generator/template/rails/resources/css/panel_css.html">panel.css</a>
+  
+    <li><a href="./lib/rdoc/generator/template/rails/resources/css/reset_css.html">reset.css</a>
+  
+    <li><a href="./lib/rdoc/generator/template/rails/resources/js/highlight_pack_js.html">highlight.pack.js</a>
+  
+    <li><a href="./lib/rdoc/generator/template/rails/resources/js/jquery-1_3_2_min_js.html">jquery-1.3.2.min.js</a>
+  
+    <li><a href="./lib/rdoc/generator/template/rails/resources/js/jquery-effect_js.html">jquery-effect.js</a>
+  
+    <li><a href="./lib/rdoc/generator/template/rails/resources/js/main_js.html">main.js</a>
+  
+    <li><a href="./lib/rdoc/generator/template/rails/resources/js/searchdoc_js.html">searchdoc.js</a>
+  
+    <li><a href="./lib/rdoc/generator/template/rails/resources/panel/index_html.html">index.html</a>
+  
+    <li><a href="./lib/rdoc/generator/template/rails/search_index_rhtml.html">search_index.rhtml</a>
+  
+    <li><a href="./lib/rdoc/generator/template/sdoc/_context_rhtml.html">_context.rhtml</a>
+  
+    <li><a href="./lib/rdoc/generator/template/sdoc/_head_rhtml.html">_head.rhtml</a>
+  
+    <li><a href="./lib/rdoc/generator/template/sdoc/class_rhtml.html">class.rhtml</a>
+  
+    <li><a href="./lib/rdoc/generator/template/sdoc/file_rhtml.html">file.rhtml</a>
+  
+    <li><a href="./lib/rdoc/generator/template/sdoc/index_rhtml.html">index.rhtml</a>
+  
+    <li><a href="./lib/rdoc/generator/template/sdoc/resources/css/github_css.html">github.css</a>
+  
+    <li><a href="./lib/rdoc/generator/template/sdoc/resources/css/main_css.html">main.css</a>
+  
+    <li><a href="./lib/rdoc/generator/template/sdoc/resources/css/panel_css.html">panel.css</a>
+  
+    <li><a href="./lib/rdoc/generator/template/sdoc/resources/css/reset_css.html">reset.css</a>
+  
+    <li><a href="./lib/rdoc/generator/template/sdoc/resources/js/highlight_pack_js.html">highlight.pack.js</a>
+  
+    <li><a href="./lib/rdoc/generator/template/sdoc/resources/js/jquery-1_3_2_min_js.html">jquery-1.3.2.min.js</a>
+  
+    <li><a href="./lib/rdoc/generator/template/sdoc/resources/js/jquery-effect_js.html">jquery-effect.js</a>
+  
+    <li><a href="./lib/rdoc/generator/template/sdoc/resources/js/main_js.html">main.js</a>
+  
+    <li><a href="./lib/rdoc/generator/template/sdoc/resources/js/searchdoc_js.html">searchdoc.js</a>
+  
+    <li><a href="./lib/rdoc/generator/template/sdoc/resources/panel/index_html.html">index.html</a>
+  
+    <li><a href="./lib/rdoc/generator/template/sdoc/search_index_rhtml.html">search_index.rhtml</a>
+  
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-label="Page README.md">
+
+<h1 id="label-SDoc"><a href="SDoc.html">SDoc</a><span><a href="#label-SDoc">&para;</a> <a href="#top">&uarr;</a></span></h1>
+
+<p><a href="https://travis-ci.org/zzak/sdoc"><img
+src="https://travis-ci.org/zzak/sdoc.png?branch=master"></a></p>
+
+<p><strong>Powering <a
+href="http://api.rubyonrails.org">api.rubyonrails.org</a>/ and <a
+href="http://railsapi.com">railsapi.com</a>/</strong></p>
+
+<h3 id="label-What+is+sdoc-3F">What is sdoc?<span><a href="#label-What+is+sdoc-3F">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p><a href="RDoc.html">RDoc</a> generator to build searchable HTML
+documentation for Ruby code.</p>
+<ul><li>
+<p><code>sdoc</code> - command line tool to run rdoc with
+<code>generator=shtml</code> (searchable HTML)</p>
+</li><li>
+<p><code>sdoc-merge</code> - command line tool to merge multiple sdoc folders
+into a single documentation site</p>
+</li></ul>
+
+<h3 id="label-Getting+Started">Getting Started<span><a href="#label-Getting+Started">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<pre class="ruby"><span class="ruby-comment"># Install the gem</span>
+  <span class="ruby-identifier">gem</span> <span class="ruby-identifier">install</span> <span class="ruby-identifier">sdoc</span>
+
+  <span class="ruby-comment"># Generate documentation for &#39;projectdir&#39;</span>
+  <span class="ruby-identifier">sdoc</span> <span class="ruby-identifier">projectdir</span>
+</pre>
+
+<h3 id="label-sdoc">sdoc<span><a href="#label-sdoc">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p><code>sdoc</code> is simply a wrapper for the <code>rdoc</code> command
+line tool. See <code>sdoc --help</code> for more details.
+<code>--fmt</code> is set to <code>shtml</code> by default. The default
+template <code>-T</code> is <code>shtml</code>, but you can also use the
+<code>direct</code> template.</p>
+
+<p>Example:</p>
+
+<pre>sdoc -o doc/rails -T direct rails</pre>
+
+<h3 id="label-sdoc-merge">sdoc-merge<span><a href="#label-sdoc-merge">&para;</a> <a href="#top">&uarr;</a></span></h3>
+<pre>
+Usage: sdoc-merge [options] directories
+    -n, --names [NAMES]              Names of merged repositories. Comma separated
+    -o, --op [DIRECTORY]             Set the output directory
+    -t, --title [TITLE]              Set the title of merged file
+</pre>
+<p>Example:</p>
+
+<pre>sdoc-merge --title &quot;Ruby v1.9, Rails v2.3.2.1&quot; --op merged --names &quot;Ruby,Rails&quot; ruby-v1.9 rails-v2.3.2.1</pre>
+
+<h3 id="label-Rake+Task">Rake Task<span><a href="#label-Rake+Task">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<pre class="ruby"><span class="ruby-comment"># Rakefile</span>
+<span class="ruby-identifier">require</span> <span class="ruby-string">&#39;sdoc&#39;</span> <span class="ruby-comment"># and use your RDoc task the same way you used it before</span>
+
+<span class="ruby-constant">Rake</span><span class="ruby-operator">::</span><span class="ruby-constant">RDocTask</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">rdoc</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">rdoc</span>.<span class="ruby-identifier">rdoc_dir</span> = <span class="ruby-string">&#39;doc/rdoc&#39;</span>
+  <span class="ruby-identifier">rdoc</span>.<span class="ruby-identifier">options</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39;--fmt&#39;</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39;shtml&#39;</span> <span class="ruby-comment"># explictly set shtml generator</span>
+  <span class="ruby-identifier">rdoc</span>.<span class="ruby-identifier">template</span> = <span class="ruby-string">&#39;direct&#39;</span> <span class="ruby-comment"># lighter template used on railsapi.com</span>
+  <span class="ruby-operator">...</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<h1 id="label-Who-3F">Who?<span><a href="#label-Who-3F">&para;</a> <a href="#top">&uarr;</a></span></h1>
+<ul><li>
+<p>Vladimir Kolesnikov (<a href="https://github.com/voloko">voloko</a>)</p>
+</li><li>
+<p>Nathan Broadbent (<a href="https://github.com/ndbroadbent">ndbroadbent</a>)</p>
+</li><li>
+<p>Zachary Scott (<a href="https://github.com/zzak">zzak</a>)</p>
+</li></ul>
+</main>
+
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

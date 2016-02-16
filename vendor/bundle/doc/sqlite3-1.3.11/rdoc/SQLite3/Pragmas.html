@@ -1,0 +1,1601 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module SQLite3::Pragmas - sqlite3-1.3.11 Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+</script>
+
+<script src="../js/jquery.js"></script>
+<script src="../js/darkfish.js"></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-auto_vacuum">#auto_vacuum</a>
+    
+    <li ><a href="#method-i-auto_vacuum-3D">#auto_vacuum=</a>
+    
+    <li ><a href="#method-i-cache_size">#cache_size</a>
+    
+    <li ><a href="#method-i-cache_size-3D">#cache_size=</a>
+    
+    <li ><a href="#method-i-database_list">#database_list</a>
+    
+    <li ><a href="#method-i-default_cache_size">#default_cache_size</a>
+    
+    <li ><a href="#method-i-default_cache_size-3D">#default_cache_size=</a>
+    
+    <li ><a href="#method-i-default_synchronous">#default_synchronous</a>
+    
+    <li ><a href="#method-i-default_synchronous-3D">#default_synchronous=</a>
+    
+    <li ><a href="#method-i-default_temp_store">#default_temp_store</a>
+    
+    <li ><a href="#method-i-default_temp_store-3D">#default_temp_store=</a>
+    
+    <li ><a href="#method-i-foreign_key_list">#foreign_key_list</a>
+    
+    <li ><a href="#method-i-full_column_names">#full_column_names</a>
+    
+    <li ><a href="#method-i-full_column_names-3D">#full_column_names=</a>
+    
+    <li ><a href="#method-i-get_boolean_pragma">#get_boolean_pragma</a>
+    
+    <li ><a href="#method-i-get_enum_pragma">#get_enum_pragma</a>
+    
+    <li ><a href="#method-i-get_int_pragma">#get_int_pragma</a>
+    
+    <li ><a href="#method-i-get_query_pragma">#get_query_pragma</a>
+    
+    <li ><a href="#method-i-index_info">#index_info</a>
+    
+    <li ><a href="#method-i-index_list">#index_list</a>
+    
+    <li ><a href="#method-i-integrity_check">#integrity_check</a>
+    
+    <li ><a href="#method-i-parser_trace">#parser_trace</a>
+    
+    <li ><a href="#method-i-parser_trace-3D">#parser_trace=</a>
+    
+    <li ><a href="#method-i-schema_cookie">#schema_cookie</a>
+    
+    <li ><a href="#method-i-schema_cookie-3D">#schema_cookie=</a>
+    
+    <li ><a href="#method-i-set_boolean_pragma">#set_boolean_pragma</a>
+    
+    <li ><a href="#method-i-set_enum_pragma">#set_enum_pragma</a>
+    
+    <li ><a href="#method-i-set_int_pragma">#set_int_pragma</a>
+    
+    <li ><a href="#method-i-synchronous">#synchronous</a>
+    
+    <li ><a href="#method-i-synchronous-3D">#synchronous=</a>
+    
+    <li ><a href="#method-i-table_info">#table_info</a>
+    
+    <li ><a href="#method-i-temp_store">#temp_store</a>
+    
+    <li ><a href="#method-i-temp_store-3D">#temp_store=</a>
+    
+    <li ><a href="#method-i-tweak_default">#tweak_default</a>
+    
+    <li ><a href="#method-i-user_cookie">#user_cookie</a>
+    
+    <li ><a href="#method-i-user_cookie-3D">#user_cookie=</a>
+    
+    <li ><a href="#method-i-vdbe_trace">#vdbe_trace</a>
+    
+    <li ><a href="#method-i-vdbe_trace-3D">#vdbe_trace=</a>
+    
+    <li ><a href="#method-i-version_compare">#version_compare</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-SQLite3::Pragmas">
+  <h1 id="module-SQLite3::Pragmas" class="module">
+    module SQLite3::Pragmas
+  </h1>
+
+  <section class="description">
+    
+<p>This module is intended for inclusion solely by the <a
+href="Database.html">Database</a> class. It defines convenience methods for
+the various pragmas supported by <a href="../SQLite3.html">SQLite3</a>.</p>
+
+<p>For a detailed description of these pragmas, see the <a
+href="../SQLite3.html">SQLite3</a> documentation at <a
+href="http://sqlite.org/pragma.html">sqlite.org/pragma.html</a>.</p>
+
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+      
+        <dt id="SYNCHRONOUS_MODES">SYNCHRONOUS_MODES
+        
+        <dd><p>The enumeration of valid synchronous modes.</p>
+        
+      
+        <dt id="TEMP_STORE_MODES">TEMP_STORE_MODES
+        
+        <dd><p>The enumeration of valid temp store modes.</p>
+        
+      
+      </dl>
+    </section>
+    
+
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-auto_vacuum" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">auto_vacuum</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="auto_vacuum-source">
+            <pre><span class="ruby-comment"># File lib/sqlite3/pragmas.rb, line 104</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">auto_vacuum</span>
+  <span class="ruby-identifier">get_boolean_pragma</span> <span class="ruby-string">&quot;auto_vacuum&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-auto_vacuum-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">auto_vacuum=</span><span
+            class="method-args">( mode )</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="auto_vacuum-3D-source">
+            <pre><span class="ruby-comment"># File lib/sqlite3/pragmas.rb, line 108</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">auto_vacuum=</span>( <span class="ruby-identifier">mode</span> )
+  <span class="ruby-identifier">set_boolean_pragma</span> <span class="ruby-string">&quot;auto_vacuum&quot;</span>, <span class="ruby-identifier">mode</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-cache_size" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">cache_size</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="cache_size-source">
+            <pre><span class="ruby-comment"># File lib/sqlite3/pragmas.rb, line 128</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">cache_size</span>
+  <span class="ruby-identifier">get_int_pragma</span> <span class="ruby-string">&quot;cache_size&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-cache_size-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">cache_size=</span><span
+            class="method-args">( size )</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="cache_size-3D-source">
+            <pre><span class="ruby-comment"># File lib/sqlite3/pragmas.rb, line 132</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">cache_size=</span>( <span class="ruby-identifier">size</span> )
+  <span class="ruby-identifier">set_int_pragma</span> <span class="ruby-string">&quot;cache_size&quot;</span>, <span class="ruby-identifier">size</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-database_list" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">database_list</span><span
+            class="method-args">( ) { |row| ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="database_list-source">
+            <pre><span class="ruby-comment"># File lib/sqlite3/pragmas.rb, line 200</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">database_list</span>( <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span> ) <span class="ruby-comment"># :yields: row</span>
+  <span class="ruby-identifier">get_query_pragma</span> <span class="ruby-string">&quot;database_list&quot;</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-default_cache_size" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">default_cache_size</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="default_cache_size-source">
+            <pre><span class="ruby-comment"># File lib/sqlite3/pragmas.rb, line 136</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">default_cache_size</span>
+  <span class="ruby-identifier">get_int_pragma</span> <span class="ruby-string">&quot;default_cache_size&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-default_cache_size-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">default_cache_size=</span><span
+            class="method-args">( size )</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="default_cache_size-3D-source">
+            <pre><span class="ruby-comment"># File lib/sqlite3/pragmas.rb, line 140</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">default_cache_size=</span>( <span class="ruby-identifier">size</span> )
+  <span class="ruby-identifier">set_int_pragma</span> <span class="ruby-string">&quot;default_cache_size&quot;</span>, <span class="ruby-identifier">size</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-default_synchronous" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">default_synchronous</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="default_synchronous-source">
+            <pre><span class="ruby-comment"># File lib/sqlite3/pragmas.rb, line 144</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">default_synchronous</span>
+  <span class="ruby-identifier">get_enum_pragma</span> <span class="ruby-string">&quot;default_synchronous&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-default_synchronous-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">default_synchronous=</span><span
+            class="method-args">( mode )</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="default_synchronous-3D-source">
+            <pre><span class="ruby-comment"># File lib/sqlite3/pragmas.rb, line 148</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">default_synchronous=</span>( <span class="ruby-identifier">mode</span> )
+  <span class="ruby-identifier">set_enum_pragma</span> <span class="ruby-string">&quot;default_synchronous&quot;</span>, <span class="ruby-identifier">mode</span>, <span class="ruby-constant">SYNCHRONOUS_MODES</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-default_temp_store" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">default_temp_store</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="default_temp_store-source">
+            <pre><span class="ruby-comment"># File lib/sqlite3/pragmas.rb, line 160</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">default_temp_store</span>
+  <span class="ruby-identifier">get_enum_pragma</span> <span class="ruby-string">&quot;default_temp_store&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-default_temp_store-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">default_temp_store=</span><span
+            class="method-args">( mode )</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="default_temp_store-3D-source">
+            <pre><span class="ruby-comment"># File lib/sqlite3/pragmas.rb, line 164</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">default_temp_store=</span>( <span class="ruby-identifier">mode</span> )
+  <span class="ruby-identifier">set_enum_pragma</span> <span class="ruby-string">&quot;default_temp_store&quot;</span>, <span class="ruby-identifier">mode</span>, <span class="ruby-constant">TEMP_STORE_MODES</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-foreign_key_list" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">foreign_key_list</span><span
+            class="method-args">( table ) { |row| ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="foreign_key_list-source">
+            <pre><span class="ruby-comment"># File lib/sqlite3/pragmas.rb, line 204</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">foreign_key_list</span>( <span class="ruby-identifier">table</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span> ) <span class="ruby-comment"># :yields: row</span>
+  <span class="ruby-identifier">get_query_pragma</span> <span class="ruby-string">&quot;foreign_key_list&quot;</span>, <span class="ruby-identifier">table</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-full_column_names" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">full_column_names</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="full_column_names-source">
+            <pre><span class="ruby-comment"># File lib/sqlite3/pragmas.rb, line 176</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">full_column_names</span>
+  <span class="ruby-identifier">get_boolean_pragma</span> <span class="ruby-string">&quot;full_column_names&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-full_column_names-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">full_column_names=</span><span
+            class="method-args">( mode )</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="full_column_names-3D-source">
+            <pre><span class="ruby-comment"># File lib/sqlite3/pragmas.rb, line 180</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">full_column_names=</span>( <span class="ruby-identifier">mode</span> )
+  <span class="ruby-identifier">set_boolean_pragma</span> <span class="ruby-string">&quot;full_column_names&quot;</span>, <span class="ruby-identifier">mode</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-index_info" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">index_info</span><span
+            class="method-args">( index ) { |row| ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="index_info-source">
+            <pre><span class="ruby-comment"># File lib/sqlite3/pragmas.rb, line 208</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">index_info</span>( <span class="ruby-identifier">index</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span> ) <span class="ruby-comment"># :yields: row</span>
+  <span class="ruby-identifier">get_query_pragma</span> <span class="ruby-string">&quot;index_info&quot;</span>, <span class="ruby-identifier">index</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-index_list" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">index_list</span><span
+            class="method-args">( table ) { |row| ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="index_list-source">
+            <pre><span class="ruby-comment"># File lib/sqlite3/pragmas.rb, line 212</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">index_list</span>( <span class="ruby-identifier">table</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span> ) <span class="ruby-comment"># :yields: row</span>
+  <span class="ruby-identifier">get_query_pragma</span> <span class="ruby-string">&quot;index_list&quot;</span>, <span class="ruby-identifier">table</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-integrity_check" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">integrity_check</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Does an integrity check on the database. If the check fails, a <a
+href="Exception.html">SQLite3::Exception</a> will be raised. Otherwise it
+returns silently.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="integrity_check-source">
+            <pre><span class="ruby-comment"># File lib/sqlite3/pragmas.rb, line 98</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">integrity_check</span>
+  <span class="ruby-identifier">execute</span>( <span class="ruby-string">&quot;PRAGMA integrity_check&quot;</span> ) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">row</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">Exception</span>, <span class="ruby-identifier">row</span>[<span class="ruby-value">0</span>] <span class="ruby-keyword">if</span> <span class="ruby-identifier">row</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">!=</span> <span class="ruby-string">&quot;ok&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-parser_trace" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">parser_trace</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="parser_trace-source">
+            <pre><span class="ruby-comment"># File lib/sqlite3/pragmas.rb, line 184</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">parser_trace</span>
+  <span class="ruby-identifier">get_boolean_pragma</span> <span class="ruby-string">&quot;parser_trace&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-parser_trace-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">parser_trace=</span><span
+            class="method-args">( mode )</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="parser_trace-3D-source">
+            <pre><span class="ruby-comment"># File lib/sqlite3/pragmas.rb, line 188</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">parser_trace=</span>( <span class="ruby-identifier">mode</span> )
+  <span class="ruby-identifier">set_boolean_pragma</span> <span class="ruby-string">&quot;parser_trace&quot;</span>, <span class="ruby-identifier">mode</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-schema_cookie" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">schema_cookie</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="schema_cookie-source">
+            <pre><span class="ruby-comment"># File lib/sqlite3/pragmas.rb, line 112</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">schema_cookie</span>
+  <span class="ruby-identifier">get_int_pragma</span> <span class="ruby-string">&quot;schema_cookie&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-schema_cookie-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">schema_cookie=</span><span
+            class="method-args">( cookie )</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="schema_cookie-3D-source">
+            <pre><span class="ruby-comment"># File lib/sqlite3/pragmas.rb, line 116</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">schema_cookie=</span>( <span class="ruby-identifier">cookie</span> )
+  <span class="ruby-identifier">set_int_pragma</span> <span class="ruby-string">&quot;schema_cookie&quot;</span>, <span class="ruby-identifier">cookie</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-synchronous" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">synchronous</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="synchronous-source">
+            <pre><span class="ruby-comment"># File lib/sqlite3/pragmas.rb, line 152</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">synchronous</span>
+  <span class="ruby-identifier">get_enum_pragma</span> <span class="ruby-string">&quot;synchronous&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-synchronous-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">synchronous=</span><span
+            class="method-args">( mode )</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="synchronous-3D-source">
+            <pre><span class="ruby-comment"># File lib/sqlite3/pragmas.rb, line 156</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">synchronous=</span>( <span class="ruby-identifier">mode</span> )
+  <span class="ruby-identifier">set_enum_pragma</span> <span class="ruby-string">&quot;synchronous&quot;</span>, <span class="ruby-identifier">mode</span>, <span class="ruby-constant">SYNCHRONOUS_MODES</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-table_info" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">table_info</span><span
+            class="method-args">(table) { |new_row| ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns information about <code>table</code>.  Yields each row of table
+information if a block is provided.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="table_info-source">
+            <pre><span class="ruby-comment"># File lib/sqlite3/pragmas.rb, line 219</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">table_info</span> <span class="ruby-identifier">table</span>
+  <span class="ruby-identifier">stmt</span>    = <span class="ruby-identifier">prepare</span> <span class="ruby-node">&quot;PRAGMA table_info(#{table})&quot;</span>
+  <span class="ruby-identifier">columns</span> = <span class="ruby-identifier">stmt</span>.<span class="ruby-identifier">columns</span>
+
+  <span class="ruby-identifier">needs_tweak_default</span> =
+    <span class="ruby-identifier">version_compare</span>(<span class="ruby-constant">SQLite3</span>.<span class="ruby-identifier">libversion</span>.<span class="ruby-identifier">to_s</span>, <span class="ruby-string">&quot;3.3.7&quot;</span>) <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+
+  <span class="ruby-identifier">result</span> = [] <span class="ruby-keyword">unless</span> <span class="ruby-identifier">block_given?</span>
+  <span class="ruby-identifier">stmt</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">row</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">new_row</span> = <span class="ruby-constant">Hash</span>[<span class="ruby-identifier">columns</span>.<span class="ruby-identifier">zip</span>(<span class="ruby-identifier">row</span>)]
+
+    <span class="ruby-comment"># FIXME: This should be removed but is required for older versions</span>
+    <span class="ruby-comment"># of rails</span>
+    <span class="ruby-keyword">if</span>(<span class="ruby-constant">Object</span>.<span class="ruby-identifier">const_defined?</span>(<span class="ruby-value">:ActiveRecord</span>))
+      <span class="ruby-identifier">new_row</span>[<span class="ruby-string">&#39;notnull&#39;</span>] = <span class="ruby-identifier">new_row</span>[<span class="ruby-string">&#39;notnull&#39;</span>].<span class="ruby-identifier">to_s</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-identifier">tweak_default</span>(<span class="ruby-identifier">new_row</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">needs_tweak_default</span>
+
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">block_given?</span>
+      <span class="ruby-keyword">yield</span> <span class="ruby-identifier">new_row</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">result</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">new_row</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">stmt</span>.<span class="ruby-identifier">close</span>
+
+  <span class="ruby-identifier">result</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-temp_store" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">temp_store</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="temp_store-source">
+            <pre><span class="ruby-comment"># File lib/sqlite3/pragmas.rb, line 168</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">temp_store</span>
+  <span class="ruby-identifier">get_enum_pragma</span> <span class="ruby-string">&quot;temp_store&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-temp_store-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">temp_store=</span><span
+            class="method-args">( mode )</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="temp_store-3D-source">
+            <pre><span class="ruby-comment"># File lib/sqlite3/pragmas.rb, line 172</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">temp_store=</span>( <span class="ruby-identifier">mode</span> )
+  <span class="ruby-identifier">set_enum_pragma</span> <span class="ruby-string">&quot;temp_store&quot;</span>, <span class="ruby-identifier">mode</span>, <span class="ruby-constant">TEMP_STORE_MODES</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-user_cookie" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">user_cookie</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="user_cookie-source">
+            <pre><span class="ruby-comment"># File lib/sqlite3/pragmas.rb, line 120</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">user_cookie</span>
+  <span class="ruby-identifier">get_int_pragma</span> <span class="ruby-string">&quot;user_cookie&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-user_cookie-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">user_cookie=</span><span
+            class="method-args">( cookie )</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="user_cookie-3D-source">
+            <pre><span class="ruby-comment"># File lib/sqlite3/pragmas.rb, line 124</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">user_cookie=</span>( <span class="ruby-identifier">cookie</span> )
+  <span class="ruby-identifier">set_int_pragma</span> <span class="ruby-string">&quot;user_cookie&quot;</span>, <span class="ruby-identifier">cookie</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-vdbe_trace" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">vdbe_trace</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="vdbe_trace-source">
+            <pre><span class="ruby-comment"># File lib/sqlite3/pragmas.rb, line 192</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">vdbe_trace</span>
+  <span class="ruby-identifier">get_boolean_pragma</span> <span class="ruby-string">&quot;vdbe_trace&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-vdbe_trace-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">vdbe_trace=</span><span
+            class="method-args">( mode )</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="vdbe_trace-3D-source">
+            <pre><span class="ruby-comment"># File lib/sqlite3/pragmas.rb, line 196</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">vdbe_trace=</span>( <span class="ruby-identifier">mode</span> )
+  <span class="ruby-identifier">set_boolean_pragma</span> <span class="ruby-string">&quot;vdbe_trace&quot;</span>, <span class="ruby-identifier">mode</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="private-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Private Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-get_boolean_pragma" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_boolean_pragma</span><span
+            class="method-args">( name )</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns <code>true</code> or <code>false</code> depending on the value of
+the named pragma.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="get_boolean_pragma-source">
+            <pre><span class="ruby-comment"># File lib/sqlite3/pragmas.rb, line 13</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_boolean_pragma</span>( <span class="ruby-identifier">name</span> )
+  <span class="ruby-identifier">get_first_value</span>( <span class="ruby-node">&quot;PRAGMA #{name}&quot;</span> ) <span class="ruby-operator">!=</span> <span class="ruby-string">&quot;0&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-get_enum_pragma" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_enum_pragma</span><span
+            class="method-args">( name )</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Return the value of the given pragma.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="get_enum_pragma-source">
+            <pre><span class="ruby-comment"># File lib/sqlite3/pragmas.rb, line 58</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_enum_pragma</span>( <span class="ruby-identifier">name</span> )
+  <span class="ruby-identifier">get_first_value</span>( <span class="ruby-node">&quot;PRAGMA #{name}&quot;</span> )
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-get_int_pragma" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_int_pragma</span><span
+            class="method-args">( name )</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns the value of the given pragma as an integer.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="get_int_pragma-source">
+            <pre><span class="ruby-comment"># File lib/sqlite3/pragmas.rb, line 77</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_int_pragma</span>( <span class="ruby-identifier">name</span> )
+  <span class="ruby-identifier">get_first_value</span>( <span class="ruby-node">&quot;PRAGMA #{name}&quot;</span> ).<span class="ruby-identifier">to_i</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-get_query_pragma" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_query_pragma</span><span
+            class="method-args">( name, *parms ) { |row| ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Requests the given pragma (and parameters), and if the block is given, each
+row of the result set will be yielded to it. Otherwise, the results are
+returned as an array.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="get_query_pragma-source">
+            <pre><span class="ruby-comment"># File lib/sqlite3/pragmas.rb, line 47</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_query_pragma</span>( <span class="ruby-identifier">name</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">parms</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span> ) <span class="ruby-comment"># :yields: row</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">parms</span>.<span class="ruby-identifier">empty?</span>
+    <span class="ruby-identifier">execute</span>( <span class="ruby-node">&quot;PRAGMA #{name}&quot;</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span> )
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">args</span> = <span class="ruby-string">&quot;&#39;&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">parms</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot;&#39;,&#39;&quot;</span>) <span class="ruby-operator">+</span> <span class="ruby-string">&quot;&#39;&quot;</span>
+    <span class="ruby-identifier">execute</span>( <span class="ruby-node">&quot;PRAGMA #{name}( #{args} )&quot;</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span> )
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-set_boolean_pragma" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">set_boolean_pragma</span><span
+            class="method-args">( name, mode )</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Sets the given pragma to the given boolean value. The value itself may be
+<code>true</code> or <code>false</code>, or any other commonly used string
+or integer that represents truth.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="set_boolean_pragma-source">
+            <pre><span class="ruby-comment"># File lib/sqlite3/pragmas.rb, line 21</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">set_boolean_pragma</span>( <span class="ruby-identifier">name</span>, <span class="ruby-identifier">mode</span> )
+  <span class="ruby-keyword">case</span> <span class="ruby-identifier">mode</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-constant">String</span>
+      <span class="ruby-keyword">case</span> <span class="ruby-identifier">mode</span>.<span class="ruby-identifier">downcase</span>
+        <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;on&quot;</span>, <span class="ruby-string">&quot;yes&quot;</span>, <span class="ruby-string">&quot;true&quot;</span>, <span class="ruby-string">&quot;y&quot;</span>, <span class="ruby-string">&quot;t&quot;</span>; <span class="ruby-identifier">mode</span> = <span class="ruby-string">&quot;&#39;ON&#39;&quot;</span>
+        <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;off&quot;</span>, <span class="ruby-string">&quot;no&quot;</span>, <span class="ruby-string">&quot;false&quot;</span>, <span class="ruby-string">&quot;n&quot;</span>, <span class="ruby-string">&quot;f&quot;</span>; <span class="ruby-identifier">mode</span> = <span class="ruby-string">&quot;&#39;OFF&#39;&quot;</span>
+        <span class="ruby-keyword">else</span>
+          <span class="ruby-identifier">raise</span> <span class="ruby-constant">Exception</span>,
+            <span class="ruby-node">&quot;unrecognized pragma parameter #{mode.inspect}&quot;</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-keyword">true</span>, <span class="ruby-value">1</span>
+      <span class="ruby-identifier">mode</span> = <span class="ruby-string">&quot;ON&quot;</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-keyword">false</span>, <span class="ruby-value">0</span>, <span class="ruby-keyword">nil</span>
+      <span class="ruby-identifier">mode</span> = <span class="ruby-string">&quot;OFF&quot;</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">raise</span> <span class="ruby-constant">Exception</span>,
+        <span class="ruby-node">&quot;unrecognized pragma parameter #{mode.inspect}&quot;</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">execute</span>( <span class="ruby-node">&quot;PRAGMA #{name}=#{mode}&quot;</span> )
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-set_enum_pragma" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">set_enum_pragma</span><span
+            class="method-args">( name, mode, enums )</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Set the value of the given pragma to <code>mode</code>. The
+<code>mode</code> parameter must conform to one of the values in the given
+<code>enum</code> array. Each entry in the array is another array comprised
+of elements in the enumeration that have duplicate values. See <a
+href="Pragmas.html#method-i-synchronous">synchronous</a>, <a
+href="Pragmas.html#method-i-default_synchronous">default_synchronous</a>,
+<a href="Pragmas.html#method-i-temp_store">temp_store</a>, and <a
+href="Pragmas.html#method-i-default_temp_store">default_temp_store</a> for
+usage examples.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="set_enum_pragma-source">
+            <pre><span class="ruby-comment"># File lib/sqlite3/pragmas.rb, line 68</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">set_enum_pragma</span>( <span class="ruby-identifier">name</span>, <span class="ruby-identifier">mode</span>, <span class="ruby-identifier">enums</span> )
+  <span class="ruby-identifier">match</span> = <span class="ruby-identifier">enums</span>.<span class="ruby-identifier">find</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">p</span><span class="ruby-operator">|</span> <span class="ruby-identifier">p</span>.<span class="ruby-identifier">find</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-identifier">i</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">downcase</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">mode</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">downcase</span> } }
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">Exception</span>,
+    <span class="ruby-node">&quot;unrecognized #{name} #{mode.inspect}&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">match</span>
+  <span class="ruby-identifier">execute</span>( <span class="ruby-node">&quot;PRAGMA #{name}=&#39;#{match.first.upcase}&#39;&quot;</span> )
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-set_int_pragma" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">set_int_pragma</span><span
+            class="method-args">( name, value )</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Set the value of the given pragma to the integer value of the
+<code>value</code> parameter.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="set_int_pragma-source">
+            <pre><span class="ruby-comment"># File lib/sqlite3/pragmas.rb, line 84</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">set_int_pragma</span>( <span class="ruby-identifier">name</span>, <span class="ruby-identifier">value</span> )
+  <span class="ruby-identifier">execute</span>( <span class="ruby-node">&quot;PRAGMA #{name}=#{value.to_i}&quot;</span> )
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-tweak_default" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">tweak_default</span><span
+            class="method-args">(hash)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Since SQLite 3.3.8, the <a
+href="Pragmas.html#method-i-table_info">#table_info</a> pragma has returned
+the default value of the row as a quoted SQL value. This method essentially
+unquotes those values.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="tweak_default-source">
+            <pre><span class="ruby-comment"># File lib/sqlite3/pragmas.rb, line 268</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">tweak_default</span>(<span class="ruby-identifier">hash</span>)
+  <span class="ruby-keyword">case</span> <span class="ruby-identifier">hash</span>[<span class="ruby-string">&quot;dflt_value&quot;</span>]
+  <span class="ruby-keyword">when</span> <span class="ruby-regexp">/^null$/i</span>
+    <span class="ruby-identifier">hash</span>[<span class="ruby-string">&quot;dflt_value&quot;</span>] = <span class="ruby-keyword">nil</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-regexp">/^&#39;(.*)&#39;$/m</span>
+    <span class="ruby-identifier">hash</span>[<span class="ruby-string">&quot;dflt_value&quot;</span>] = <span class="ruby-node">$1</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/&#39;&#39;/</span>, <span class="ruby-string">&quot;&#39;&quot;</span>)
+  <span class="ruby-keyword">when</span> <span class="ruby-regexp">/^&quot;(.*)&quot;$/m</span>
+    <span class="ruby-identifier">hash</span>[<span class="ruby-string">&quot;dflt_value&quot;</span>] = <span class="ruby-node">$1</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/&quot;&quot;/</span>, <span class="ruby-string">&#39;&quot;&#39;</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-version_compare" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">version_compare</span><span
+            class="method-args">(v1, v2)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Compares two version strings</p>
+          
+          
+
+          
+          <div class="method-source-code" id="version_compare-source">
+            <pre><span class="ruby-comment"># File lib/sqlite3/pragmas.rb, line 252</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">version_compare</span>(<span class="ruby-identifier">v1</span>, <span class="ruby-identifier">v2</span>)
+  <span class="ruby-identifier">v1</span> = <span class="ruby-identifier">v1</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&quot;.&quot;</span>).<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-identifier">i</span>.<span class="ruby-identifier">to_i</span> }
+  <span class="ruby-identifier">v2</span> = <span class="ruby-identifier">v2</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&quot;.&quot;</span>).<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-identifier">i</span>.<span class="ruby-identifier">to_i</span> }
+  <span class="ruby-identifier">parts</span> = [<span class="ruby-identifier">v1</span>.<span class="ruby-identifier">length</span>, <span class="ruby-identifier">v2</span>.<span class="ruby-identifier">length</span>].<span class="ruby-identifier">max</span>
+  <span class="ruby-identifier">v1</span>.<span class="ruby-identifier">push</span> <span class="ruby-value">0</span> <span class="ruby-keyword">while</span> <span class="ruby-identifier">v1</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">parts</span>
+  <span class="ruby-identifier">v2</span>.<span class="ruby-identifier">push</span> <span class="ruby-value">0</span> <span class="ruby-keyword">while</span> <span class="ruby-identifier">v2</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">parts</span>
+  <span class="ruby-identifier">v1</span>.<span class="ruby-identifier">zip</span>(<span class="ruby-identifier">v2</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">a</span>,<span class="ruby-identifier">b</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-value">-1</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">a</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">b</span>
+    <span class="ruby-keyword">return</span>  <span class="ruby-value">1</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">a</span> <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">b</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-value">0</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

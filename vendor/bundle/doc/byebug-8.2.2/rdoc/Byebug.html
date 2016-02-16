@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module Byebug - byebug-8.2.2 Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/darkfish.js"></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+    <div id="includes-section" class="nav-section">
+  <h3>Included Modules</h3>
+
+  <ul class="link-list">
+  
+  
+    <li><a class="include" href="Byebug/Helpers/ReflectionHelper.html">Byebug::Helpers::ReflectionHelper</a>
+  
+  
+  </ul>
+</div>
+
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-attach">::attach</a>
+    
+    <li ><a href="#method-c-handle_post_mortem">::handle_post_mortem</a>
+    
+    <li ><a href="#method-c-interrupt">::interrupt</a>
+    
+    <li ><a href="#method-c-load_settings">::load_settings</a>
+    
+    <li ><a href="#method-c-parse_host_and_port">::parse_host_and_port</a>
+    
+    <li ><a href="#method-c-start_client">::start_client</a>
+    
+    <li ><a href="#method-c-start_control">::start_control</a>
+    
+    <li ><a href="#method-c-start_server">::start_server</a>
+    
+    <li ><a href="#method-i-run_init_script">#run_init_script</a>
+    
+    <li ><a href="#method-i-run_rc_file">#run_rc_file</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-Byebug">
+  <h1 id="module-Byebug" class="module">
+    module Byebug
+  </h1>
+
+  <section class="description">
+    
+<p>Main Container for all of Byebug&#39;s code</p>
+
+<p>Main debugger&#39;s container module. Everything is defined under this
+module</p>
+
+<p>Namespace for all of byebug&#39;s code</p>
+
+<p>frozen_string_literal: true</p>
+
+<p>Remote debugging functionality.</p>
+
+<p>TODO: Refactor &amp; add tests</p>
+
+<p>frozen_string_literal: true</p>
+
+<p>Reopen main module to define the library version</p>
+
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+      
+        <dt id="PORT">PORT
+        
+        <dd><p>Port number used for remote debugging</p>
+        
+      
+        <dt id="VERSION">VERSION
+        
+        <dd>
+        
+      
+      </dl>
+    </section>
+    
+
+    
+    <section class="attribute-method-details" class="method-section">
+      <header>
+        <h3>Attributes</h3>
+      </header>
+
+      
+      <div id="attribute-c-actual_control_port" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">actual_control_port</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-c-actual_port" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">actual_port</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>The actual port that the server is started at</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-c-wait_connection" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">wait_connection</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>If in remote mode, wait for the remote connection</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-displays" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">displays</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>Debugger&#39;s display expressions</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-init_file" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">init_file</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>Configuration file used for startup commands. Default value is .byebugrc</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-mode" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">mode</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>Running mode of the debugger. Can be either:</p>
+<ul><li>
+<p>:attached =&gt; Attached to a running program through the `byebug` method.</p>
+</li><li>
+<p>:standalone =&gt; Started through `bin/byebug` script.</p>
+</li></ul>
+        
+        </div>
+      </div>
+      
+    </section>
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-attach" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">attach</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Enters byebug right before (or right after if <em>before</em> is false)
+return events occur. Before entering byebug the init script is read.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="attach-source">
+            <pre><span class="ruby-comment"># File lib/byebug/attacher.rb, line 9</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">attach</span>
+  <span class="ruby-identifier">require</span> <span class="ruby-string">&#39;byebug/core&#39;</span>
+
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">started?</span>
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">mode</span> = <span class="ruby-value">:attached</span>
+
+    <span class="ruby-identifier">start</span>
+    <span class="ruby-identifier">run_init_script</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">current_context</span>.<span class="ruby-identifier">step_out</span>(<span class="ruby-value">3</span>, <span class="ruby-keyword">true</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-handle_post_mortem" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">handle_post_mortem</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Saves information about the unhandled exception and gives a byebug prompt
+back to the user before program termination.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="handle_post_mortem-source">
+            <pre><span class="ruby-comment"># File lib/byebug/core.rb, line 70</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">handle_post_mortem</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">raised_exception</span>
+
+  <span class="ruby-identifier">context</span> = <span class="ruby-identifier">raised_exception</span>.<span class="ruby-identifier">__bb_context</span>
+
+  <span class="ruby-constant">PostMortemProcessor</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">context</span>).<span class="ruby-identifier">at_line</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-interrupt" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">interrupt</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Interrupts the current thread</p>
+          
+          
+
+          
+          <div class="method-source-code" id="interrupt-source">
+            <pre><span class="ruby-comment"># File lib/byebug/remote.rb, line 23</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">interrupt</span>
+  <span class="ruby-identifier">current_context</span>.<span class="ruby-identifier">interrupt</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-load_settings" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">load_settings</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="load_settings-source">
+            <pre><span class="ruby-comment"># File lib/byebug/core.rb, line 55</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">load_settings</span>
+  <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">glob</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span>(<span class="ruby-string">&#39;../settings/*.rb&#39;</span>, <span class="ruby-keyword">__FILE__</span>)).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">file</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">require</span> <span class="ruby-identifier">file</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">constants</span>.<span class="ruby-identifier">grep</span>(<span class="ruby-regexp">/[a-z]Setting/</span>).<span class="ruby-identifier">map</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">name</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">setting</span> = <span class="ruby-identifier">const_get</span>(<span class="ruby-identifier">name</span>).<span class="ruby-identifier">new</span>
+    <span class="ruby-constant">Byebug</span><span class="ruby-operator">::</span><span class="ruby-constant">Setting</span>.<span class="ruby-identifier">settings</span>[<span class="ruby-identifier">setting</span>.<span class="ruby-identifier">to_sym</span>] = <span class="ruby-identifier">setting</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-parse_host_and_port" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">parse_host_and_port</span><span
+            class="method-args">(host_port_spec)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="parse_host_and_port-source">
+            <pre><span class="ruby-comment"># File lib/byebug/remote.rb, line 100</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">parse_host_and_port</span>(<span class="ruby-identifier">host_port_spec</span>)
+  <span class="ruby-identifier">location</span> = <span class="ruby-identifier">host_port_spec</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;:&#39;</span>)
+  <span class="ruby-identifier">location</span>[<span class="ruby-value">1</span>] <span class="ruby-operator">?</span> [<span class="ruby-identifier">location</span>[<span class="ruby-value">0</span>], <span class="ruby-identifier">location</span>[<span class="ruby-value">1</span>].<span class="ruby-identifier">to_i</span>] <span class="ruby-operator">:</span> [<span class="ruby-string">&#39;localhost&#39;</span>, <span class="ruby-identifier">location</span>[<span class="ruby-value">0</span>]]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-start_client" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">start_client</span><span
+            class="method-args">(host = 'localhost', port = PORT)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Connects to the remote byebug</p>
+          
+          
+
+          
+          <div class="method-source-code" id="start_client-source">
+            <pre><span class="ruby-comment"># File lib/byebug/remote.rb, line 75</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">start_client</span>(<span class="ruby-identifier">host</span> = <span class="ruby-string">&#39;localhost&#39;</span>, <span class="ruby-identifier">port</span> = <span class="ruby-constant">PORT</span>)
+  <span class="ruby-constant">Context</span>.<span class="ruby-identifier">interface</span> = <span class="ruby-constant">LocalInterface</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&#39;Connecting to byebug server...&#39;</span>
+  <span class="ruby-identifier">socket</span> = <span class="ruby-constant">TCPSocket</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">host</span>, <span class="ruby-identifier">port</span>)
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&#39;Connected.&#39;</span>
+
+  <span class="ruby-identifier">catch</span>(<span class="ruby-value">:exit</span>) <span class="ruby-keyword">do</span>
+    <span class="ruby-keyword">while</span> (<span class="ruby-identifier">line</span> = <span class="ruby-identifier">socket</span>.<span class="ruby-identifier">gets</span>)
+      <span class="ruby-keyword">case</span> <span class="ruby-identifier">line</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-regexp">/^PROMPT (.*)$/</span>
+        <span class="ruby-identifier">input</span> = <span class="ruby-constant">Context</span>.<span class="ruby-identifier">interface</span>.<span class="ruby-identifier">read_command</span>(<span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">last_match</span>[<span class="ruby-value">1</span>])
+        <span class="ruby-identifier">throw</span> <span class="ruby-value">:exit</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">input</span>
+        <span class="ruby-identifier">socket</span>.<span class="ruby-identifier">puts</span> <span class="ruby-identifier">input</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-regexp">/^CONFIRM (.*)$/</span>
+        <span class="ruby-identifier">input</span> = <span class="ruby-constant">Context</span>.<span class="ruby-identifier">interface</span>.<span class="ruby-identifier">confirm</span>(<span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">last_match</span>[<span class="ruby-value">1</span>])
+        <span class="ruby-identifier">throw</span> <span class="ruby-value">:exit</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">input</span>
+        <span class="ruby-identifier">socket</span>.<span class="ruby-identifier">puts</span> <span class="ruby-identifier">input</span>
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">puts</span> <span class="ruby-identifier">line</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">socket</span>.<span class="ruby-identifier">close</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-start_control" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">start_control</span><span
+            class="method-args">(host = nil, ctrl_port = PORT + 1)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="start_control-source">
+            <pre><span class="ruby-comment"># File lib/byebug/remote.rb, line 56</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">start_control</span>(<span class="ruby-identifier">host</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">ctrl_port</span> = <span class="ruby-constant">PORT</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-ivar">@actual_control_port</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@control_thread</span>
+  <span class="ruby-identifier">server</span> = <span class="ruby-constant">TCPServer</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">host</span>, <span class="ruby-identifier">ctrl_port</span>)
+  <span class="ruby-ivar">@actual_control_port</span> = <span class="ruby-identifier">server</span>.<span class="ruby-identifier">addr</span>[<span class="ruby-value">1</span>]
+
+  <span class="ruby-ivar">@control_thread</span> = <span class="ruby-constant">DebugThread</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-keyword">while</span> (<span class="ruby-identifier">session</span> = <span class="ruby-identifier">server</span>.<span class="ruby-identifier">accept</span>)
+      <span class="ruby-constant">Context</span>.<span class="ruby-identifier">interface</span> = <span class="ruby-constant">RemoteInterface</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">session</span>)
+
+      <span class="ruby-constant">ControlProcessor</span>.<span class="ruby-identifier">new</span>(<span class="ruby-constant">Byebug</span>.<span class="ruby-identifier">current_context</span>).<span class="ruby-identifier">process_commands</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-ivar">@actual_control_port</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-start_server" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">start_server</span><span
+            class="method-args">(host = nil, port = PORT) { || ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Starts a remote byebug</p>
+          
+          
+
+          
+          <div class="method-source-code" id="start_server-source">
+            <pre><span class="ruby-comment"># File lib/byebug/remote.rb, line 30</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">start_server</span>(<span class="ruby-identifier">host</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">port</span> = <span class="ruby-constant">PORT</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@thread</span>
+
+  <span class="ruby-constant">Context</span>.<span class="ruby-identifier">interface</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-identifier">start</span>
+
+  <span class="ruby-identifier">start_control</span>(<span class="ruby-identifier">host</span>, <span class="ruby-identifier">port</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span> <span class="ruby-operator">?</span> <span class="ruby-value">0</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">port</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>)
+
+  <span class="ruby-keyword">yield</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">block_given?</span>
+
+  <span class="ruby-identifier">mutex</span> = <span class="ruby-constant">Mutex</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-identifier">proceed</span> = <span class="ruby-constant">ConditionVariable</span>.<span class="ruby-identifier">new</span>
+
+  <span class="ruby-identifier">server</span> = <span class="ruby-constant">TCPServer</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">host</span>, <span class="ruby-identifier">port</span>)
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">actual_port</span> = <span class="ruby-identifier">server</span>.<span class="ruby-identifier">addr</span>[<span class="ruby-value">1</span>]
+
+  <span class="ruby-ivar">@thread</span> = <span class="ruby-constant">DebugThread</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-keyword">while</span> (<span class="ruby-identifier">session</span> = <span class="ruby-identifier">server</span>.<span class="ruby-identifier">accept</span>)
+      <span class="ruby-constant">Context</span>.<span class="ruby-identifier">interface</span> = <span class="ruby-constant">RemoteInterface</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">session</span>)
+      <span class="ruby-identifier">mutex</span>.<span class="ruby-identifier">synchronize</span> { <span class="ruby-identifier">proceed</span>.<span class="ruby-identifier">signal</span> } <span class="ruby-keyword">if</span> <span class="ruby-identifier">wait_connection</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">mutex</span>.<span class="ruby-identifier">synchronize</span> { <span class="ruby-identifier">proceed</span>.<span class="ruby-identifier">wait</span>(<span class="ruby-identifier">mutex</span>) } <span class="ruby-keyword">if</span> <span class="ruby-identifier">wait_connection</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-run_init_script" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">run_init_script</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Runs normal byebug initialization scripts.</p>
+
+<p>Reads and executes the commands from init file (if any) in the current
+working directory. This is only done if the current directory is different
+from your home directory. Thus, you can have more than one init file, one
+generic in your home directory, and another, specific to the program you
+are debugging, in the directory where you invoke byebug.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="run_init_script-source">
+            <pre><span class="ruby-comment"># File lib/byebug/core.rb, line 49</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">run_init_script</span>
+  <span class="ruby-identifier">run_rc_file</span>(<span class="ruby-constant">ENV</span>[<span class="ruby-string">&#39;HOME&#39;</span>])
+
+  <span class="ruby-identifier">run_rc_file</span>(<span class="ruby-constant">Dir</span>.<span class="ruby-identifier">pwd</span>) <span class="ruby-keyword">unless</span> <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">pwd</span> <span class="ruby-operator">==</span> <span class="ruby-constant">ENV</span>[<span class="ruby-string">&#39;HOME&#39;</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="private-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Private Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-run_rc_file" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">run_rc_file</span><span
+            class="method-args">(base_path)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Runs a initialization script file</p>
+          
+          
+
+          
+          <div class="method-source-code" id="run_rc_file-source">
+            <pre><span class="ruby-comment"># File lib/byebug/core.rb, line 85</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">run_rc_file</span>(<span class="ruby-identifier">base_path</span>)
+  <span class="ruby-identifier">old_interface</span> = <span class="ruby-constant">Context</span>.<span class="ruby-identifier">interface</span>
+
+  <span class="ruby-identifier">rc_file</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-identifier">base_path</span>, <span class="ruby-identifier">init_file</span>))
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">unless</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>(<span class="ruby-identifier">rc_file</span>)
+
+  <span class="ruby-constant">Context</span>.<span class="ruby-identifier">interface</span> = <span class="ruby-constant">ScriptInterface</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">rc_file</span>)
+
+  <span class="ruby-constant">ScriptProcessor</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword">nil</span>).<span class="ruby-identifier">process_commands</span>
+<span class="ruby-keyword">ensure</span>
+  <span class="ruby-constant">Context</span>.<span class="ruby-identifier">interface</span> = <span class="ruby-identifier">old_interface</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

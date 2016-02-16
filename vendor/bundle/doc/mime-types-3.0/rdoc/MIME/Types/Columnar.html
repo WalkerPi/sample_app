@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module MIME::Types::Columnar - mime-types-3.0 Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../";
+</script>
+
+<script src="../../js/jquery.js"></script>
+<script src="../../js/darkfish.js"></script>
+
+<link href="../../css/fonts.css" rel="stylesheet">
+<link href="../../css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../../table_of_contents.html#pages">Pages</a>
+    <a href="../../table_of_contents.html#classes">Classes</a>
+    <a href="../../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-arr">#arr</a>
+    
+    <li ><a href="#method-i-dict">#dict</a>
+    
+    <li ><a href="#method-i-each_file_line">#each_file_line</a>
+    
+    <li ><a href="#method-i-flag">#flag</a>
+    
+    <li ><a href="#method-i-load_docs">#load_docs</a>
+    
+    <li ><a href="#method-i-load_encoding">#load_encoding</a>
+    
+    <li ><a href="#method-i-load_flags">#load_flags</a>
+    
+    <li ><a href="#method-i-load_friendly">#load_friendly</a>
+    
+    <li ><a href="#method-i-load_preferred_extension">#load_preferred_extension</a>
+    
+    <li ><a href="#method-i-load_use_instead">#load_use_instead</a>
+    
+    <li ><a href="#method-i-load_xrefs">#load_xrefs</a>
+    
+    <li ><a href="#method-i-opt">#opt</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-MIME::Types::Columnar">
+  <h1 id="module-MIME::Types::Columnar" class="module">
+    module MIME::Types::Columnar
+  </h1>
+
+  <section class="description">
+    
+<p><a href="Columnar.html">MIME::Types::Columnar</a> is used to extend a <a
+href="../Types.html">MIME::Types</a> container to load data by columns
+instead of from JSON or YAML. Column loads of <a
+href="../../MIME.html">MIME</a> types loaded through the columnar store are
+synchronized with a Mutex.</p>
+
+<p><a href="Columnar.html">MIME::Types::Columnar</a> is not intended to be
+used directly, but will be added to an instance of <a
+href="../Types.html">MIME::Types</a> when it is loaded with <a
+href="Loader.html#method-i-load_columnar">MIME::Types::Loader#load_columnar</a>.</p>
+
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="private-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Private Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-arr" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">arr</span><span
+            class="method-args">(line)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="arr-source">
+            <pre><span class="ruby-comment"># File lib/mime/types/columnar.rb, line 125</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">arr</span>(<span class="ruby-identifier">line</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">line</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;-&#39;</span>.<span class="ruby-identifier">freeze</span>
+    []
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">line</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;|&#39;</span>.<span class="ruby-identifier">freeze</span>).<span class="ruby-identifier">flatten</span>.<span class="ruby-identifier">compact</span>.<span class="ruby-identifier">uniq</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-dict" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">dict</span><span
+            class="method-args">(line, array: false)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="dict-source">
+            <pre><span class="ruby-comment"># File lib/mime/types/columnar.rb, line 113</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">dict</span>(<span class="ruby-identifier">line</span>, <span class="ruby-identifier">array</span><span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">line</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;-&#39;</span>.<span class="ruby-identifier">freeze</span>
+    {}
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">line</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;|&#39;</span>.<span class="ruby-identifier">freeze</span>).<span class="ruby-identifier">each_with_object</span>({}) { <span class="ruby-operator">|</span><span class="ruby-identifier">l</span>, <span class="ruby-identifier">h</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">k</span>, <span class="ruby-identifier">v</span> = <span class="ruby-identifier">l</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;^&#39;</span>.<span class="ruby-identifier">freeze</span>)
+      <span class="ruby-identifier">v</span> = <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">v</span>.<span class="ruby-identifier">empty?</span>
+      <span class="ruby-identifier">h</span>[<span class="ruby-identifier">k</span>] = <span class="ruby-identifier">array</span> <span class="ruby-operator">?</span> <span class="ruby-constant">Array</span>(<span class="ruby-identifier">v</span>) <span class="ruby-operator">:</span> <span class="ruby-identifier">v</span>
+    }
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-each_file_line" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">each_file_line</span><span
+            class="method-args">(name, lookup = true) { |type, line| ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="each_file_line-source">
+            <pre><span class="ruby-comment"># File lib/mime/types/columnar.rb, line 44</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">each_file_line</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">lookup</span> = <span class="ruby-keyword">true</span>)
+  <span class="ruby-constant">LOAD_MUTEX</span>.<span class="ruby-identifier">synchronize</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-keyword">next</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@__files__</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">name</span>)
+
+    <span class="ruby-identifier">i</span> = <span class="ruby-value">-1</span>
+    <span class="ruby-identifier">column</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-ivar">@__root__</span>, <span class="ruby-node">&quot;mime.#{name}.column&quot;</span>)
+
+    <span class="ruby-constant">IO</span>.<span class="ruby-identifier">readlines</span>(<span class="ruby-identifier">column</span>, <span class="ruby-identifier">encoding</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;UTF-8&#39;</span>.<span class="ruby-identifier">freeze</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">line</span>.<span class="ruby-identifier">chomp!</span>
+
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">lookup</span>
+        <span class="ruby-identifier">type</span> = <span class="ruby-ivar">@__mime_data__</span>[<span class="ruby-identifier">i</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>] <span class="ruby-keyword">or</span> <span class="ruby-keyword">next</span>
+        <span class="ruby-keyword">yield</span> <span class="ruby-identifier">type</span>, <span class="ruby-identifier">line</span>
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-keyword">yield</span> <span class="ruby-identifier">line</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-ivar">@__files__</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">name</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-flag" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">flag</span><span
+            class="method-args">(line)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="flag-source">
+            <pre><span class="ruby-comment"># File lib/mime/types/columnar.rb, line 137</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">flag</span>(<span class="ruby-identifier">line</span>)
+  <span class="ruby-identifier">line</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;1&#39;</span>.<span class="ruby-identifier">freeze</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">true</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-load_docs" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">load_docs</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="load_docs-source">
+            <pre><span class="ruby-comment"># File lib/mime/types/columnar.rb, line 74</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">load_docs</span>
+  <span class="ruby-identifier">each_file_line</span>(<span class="ruby-string">&#39;docs&#39;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">type</span>, <span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">type</span>.<span class="ruby-identifier">instance_variable_set</span>(<span class="ruby-value">:@docs</span>, <span class="ruby-identifier">opt</span>(<span class="ruby-identifier">line</span>))
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-load_encoding" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">load_encoding</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="load_encoding-source">
+            <pre><span class="ruby-comment"># File lib/mime/types/columnar.rb, line 66</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">load_encoding</span>
+  <span class="ruby-identifier">each_file_line</span>(<span class="ruby-string">&#39;encoding&#39;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">type</span>, <span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">pool</span> <span class="ruby-operator">||=</span> {}
+    <span class="ruby-identifier">line</span>.<span class="ruby-identifier">freeze</span>
+    <span class="ruby-identifier">type</span>.<span class="ruby-identifier">instance_variable_set</span>(<span class="ruby-value">:@encoding</span>, (<span class="ruby-identifier">pool</span>[<span class="ruby-identifier">line</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">line</span>))
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-load_flags" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">load_flags</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="load_flags-source">
+            <pre><span class="ruby-comment"># File lib/mime/types/columnar.rb, line 86</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">load_flags</span>
+  <span class="ruby-identifier">each_file_line</span>(<span class="ruby-string">&#39;flags&#39;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">type</span>, <span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">line</span> = <span class="ruby-identifier">line</span>.<span class="ruby-identifier">split</span>
+    <span class="ruby-identifier">type</span>.<span class="ruby-identifier">instance_variable_set</span>(<span class="ruby-value">:@obsolete</span>, <span class="ruby-identifier">flag</span>(<span class="ruby-identifier">line</span>.<span class="ruby-identifier">shift</span>))
+    <span class="ruby-identifier">type</span>.<span class="ruby-identifier">instance_variable_set</span>(<span class="ruby-value">:@registered</span>, <span class="ruby-identifier">flag</span>(<span class="ruby-identifier">line</span>.<span class="ruby-identifier">shift</span>))
+    <span class="ruby-identifier">type</span>.<span class="ruby-identifier">instance_variable_set</span>(<span class="ruby-value">:@signature</span>, <span class="ruby-identifier">flag</span>(<span class="ruby-identifier">line</span>.<span class="ruby-identifier">shift</span>))
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-load_friendly" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">load_friendly</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="load_friendly-source">
+            <pre><span class="ruby-comment"># File lib/mime/types/columnar.rb, line 101</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">load_friendly</span>
+  <span class="ruby-identifier">each_file_line</span>(<span class="ruby-string">&#39;friendly&#39;</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">type</span>, <span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">type</span>.<span class="ruby-identifier">instance_variable_set</span>(<span class="ruby-value">:@friendly</span>, <span class="ruby-identifier">dict</span>(<span class="ruby-identifier">line</span>))
+  }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-load_preferred_extension" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">load_preferred_extension</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="load_preferred_extension-source">
+            <pre><span class="ruby-comment"># File lib/mime/types/columnar.rb, line 80</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">load_preferred_extension</span>
+  <span class="ruby-identifier">each_file_line</span>(<span class="ruby-string">&#39;pext&#39;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">type</span>, <span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">type</span>.<span class="ruby-identifier">instance_variable_set</span>(<span class="ruby-value">:@preferred_extension</span>, <span class="ruby-identifier">opt</span>(<span class="ruby-identifier">line</span>))
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-load_use_instead" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">load_use_instead</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="load_use_instead-source">
+            <pre><span class="ruby-comment"># File lib/mime/types/columnar.rb, line 107</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">load_use_instead</span>
+  <span class="ruby-identifier">each_file_line</span>(<span class="ruby-string">&#39;use_instead&#39;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">type</span>, <span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">type</span>.<span class="ruby-identifier">instance_variable_set</span>(<span class="ruby-value">:@use_instead</span>, <span class="ruby-identifier">opt</span>(<span class="ruby-identifier">line</span>))
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-load_xrefs" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">load_xrefs</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="load_xrefs-source">
+            <pre><span class="ruby-comment"># File lib/mime/types/columnar.rb, line 95</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">load_xrefs</span>
+  <span class="ruby-identifier">each_file_line</span>(<span class="ruby-string">&#39;xrefs&#39;</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">type</span>, <span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">type</span>.<span class="ruby-identifier">instance_variable_set</span>(<span class="ruby-value">:@xrefs</span>, <span class="ruby-identifier">dict</span>(<span class="ruby-identifier">line</span>, <span class="ruby-identifier">array</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>))
+  }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-opt" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">opt</span><span
+            class="method-args">(line)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="opt-source">
+            <pre><span class="ruby-comment"># File lib/mime/types/columnar.rb, line 133</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">opt</span>(<span class="ruby-identifier">line</span>)
+  <span class="ruby-identifier">line</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">line</span> <span class="ruby-operator">==</span> <span class="ruby-string">&#39;-&#39;</span>.<span class="ruby-identifier">freeze</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module SQLite3 - sqlite3-1.3.11 Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/darkfish.js"></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li class="calls-super" ><a href="#method-c-const_missing">::const_missing</a>
+    
+    <li ><a href="#method-c-libversion">::libversion</a>
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-commit">#commit</a>
+    
+    <li ><a href="#method-i-create_aggregate_handler">#create_aggregate_handler</a>
+    
+    <li ><a href="#method-i-finalize">#finalize</a>
+    
+    <li ><a href="#method-i-instance">#instance</a>
+    
+    <li ><a href="#method-i-ordered_map_for">#ordered_map_for</a>
+    
+    <li ><a href="#method-i-readonly-3F">#readonly?</a>
+    
+    <li ><a href="#method-i-rollback">#rollback</a>
+    
+    <li ><a href="#method-i-step">#step</a>
+    
+    <li ><a href="#method-i-transaction">#transaction</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-SQLite3">
+  <h1 id="module-SQLite3" class="module">
+    module SQLite3
+  </h1>
+
+  <section class="description">
+    
+<p><a href="SQLite3.html">SQLite3</a> is a wrapper around the popular database
+<a href="http://sqlite.org">sqlite</a>.</p>
+
+<p>For an example of usage, see <a
+href="SQLite3/Database.html">SQLite3::Database</a>.</p>
+
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+      
+        <dt id="SQLITE_VERSION">SQLITE_VERSION
+        
+        <dd>
+        
+      
+        <dt id="SQLITE_VERSION_NUMBER">SQLITE_VERSION_NUMBER
+        
+        <dd>
+        
+      
+        <dt id="VERSION">VERSION
+        
+        <dd>
+        
+      
+      </dl>
+    </section>
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-const_missing" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">const_missing</span><span
+            class="method-args">(name)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+            <div class="method-calls-super">
+              Calls superclass method
+              
+            </div>
+          
+
+          
+          <div class="method-source-code" id="const_missing-source">
+            <pre><span class="ruby-comment"># File lib/sqlite3/version.rb, line 18</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">const_missing</span>(<span class="ruby-identifier">name</span>)
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">super</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-value">:Version</span>
+    <span class="ruby-identifier">warn</span>(<span class="ruby-string">&quot;#{caller[0]}: SQLite::Version will be removed in sqlite3-ruby version 2.0.0
+&quot;</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">$VERBOSE</span>
+    <span class="ruby-constant">VersionProxy</span>
+  <span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-libversion" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">libversion</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="libversion-source">
+            <pre>static VALUE libversion(VALUE UNUSED(klass))
+{
+  return INT2NUM(sqlite3_libversion_number());
+}</pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(klass)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/sqlite3/database.rb, line 453</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span> <span class="ruby-identifier">klass</span>
+  <span class="ruby-ivar">@klass</span> = <span class="ruby-identifier">klass</span>
+  <span class="ruby-ivar">@fp</span>    = <span class="ruby-constant">FunctionProxy</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-commit" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">commit</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Commits the current transaction. If there is no current transaction, this
+will cause an error to be raised. This returns <code>true</code>, in order
+to allow it to be used in idioms like <code>abort? and rollback or
+commit</code>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="commit-source">
+            <pre><span class="ruby-comment"># File lib/sqlite3/database.rb, line 516</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">commit</span>
+  <span class="ruby-identifier">execute</span> <span class="ruby-string">&quot;commit transaction&quot;</span>
+  <span class="ruby-keyword">true</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-create_aggregate_handler" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">create_aggregate_handler</span><span
+            class="method-args">( handler )</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>This is another approach to creating an aggregate function (see
+create_aggregate). Instead of explicitly specifying the name, callbacks,
+arity, and type, you specify a factory object (the “handler”) that knows
+how to obtain all of that information. The handler should respond to the
+following messages:</p>
+<dl class="rdoc-list note-list"><dt><code>arity</code>
+<dd>
+<p>corresponds to the <code>arity</code> parameter of create_aggregate. This
+message is optional, and if the handler does not respond to it, the
+function will have an arity of -1.</p>
+</dd><dt><code>name</code>
+<dd>
+<p>this is the name of the function. The handler <em>must</em> implement this
+message.</p>
+</dd><dt><code>new</code>
+<dd>
+<p>this must be implemented by the handler. It should return a new instance of
+the object that will handle a specific invocation of the function.</p>
+</dd></dl>
+
+<p>The handler instance (the object returned by the <code>new</code> message,
+described above), must respond to the following messages:</p>
+<dl class="rdoc-list note-list"><dt><code>step</code>
+<dd>
+<p>this is the method that will be called for each step of the aggregate
+function&#39;s evaluation. It should implement the same signature as the
+<code>step</code> callback for create_aggregate.</p>
+</dd><dt><code>finalize</code>
+<dd>
+<p>this is the method that will be called to finalize the aggregate
+function&#39;s evaluation. It should implement the same signature as the
+<code>finalize</code> callback for create_aggregate.</p>
+</dd></dl>
+
+<p>Example:</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">LengthsAggregateHandler</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">arity</span>; <span class="ruby-value">1</span>; <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">name</span>; <span class="ruby-string">&#39;lengths&#39;</span>; <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>
+    <span class="ruby-ivar">@total</span> = <span class="ruby-value">0</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier">step</span>( <span class="ruby-identifier">ctx</span>, <span class="ruby-identifier">name</span> )
+    <span class="ruby-ivar">@total</span> <span class="ruby-operator">+=</span> ( <span class="ruby-identifier">name</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">name</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">:</span> <span class="ruby-value">0</span> )
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier">finalize</span>( <span class="ruby-identifier">ctx</span> )
+    <span class="ruby-identifier">ctx</span>.<span class="ruby-identifier">result</span> = <span class="ruby-ivar">@total</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">db</span>.<span class="ruby-identifier">create_aggregate_handler</span>( <span class="ruby-constant">LengthsAggregateHandler</span> )
+<span class="ruby-identifier">puts</span> <span class="ruby-identifier">db</span>.<span class="ruby-identifier">get_first_value</span>( <span class="ruby-string">&quot;select lengths(name) from A&quot;</span> )
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="create_aggregate_handler-source">
+            <pre><span class="ruby-comment"># File lib/sqlite3/database.rb, line 451</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">create_aggregate_handler</span>( <span class="ruby-identifier">handler</span> )
+  <span class="ruby-identifier">proxy</span> = <span class="ruby-constant">Class</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span> <span class="ruby-identifier">klass</span>
+      <span class="ruby-ivar">@klass</span> = <span class="ruby-identifier">klass</span>
+      <span class="ruby-ivar">@fp</span>    = <span class="ruby-constant">FunctionProxy</span>.<span class="ruby-identifier">new</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-keyword">def</span> <span class="ruby-identifier">step</span>( <span class="ruby-operator">*</span><span class="ruby-identifier">args</span> )
+      <span class="ruby-identifier">instance</span>.<span class="ruby-identifier">step</span>(<span class="ruby-ivar">@fp</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-keyword">def</span> <span class="ruby-identifier">finalize</span>
+      <span class="ruby-identifier">instance</span>.<span class="ruby-identifier">finalize</span> <span class="ruby-ivar">@fp</span>
+      <span class="ruby-ivar">@instance</span> = <span class="ruby-keyword">nil</span>
+      <span class="ruby-ivar">@fp</span>.<span class="ruby-identifier">result</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-identifier">private</span>
+
+    <span class="ruby-keyword">def</span> <span class="ruby-identifier">instance</span>
+      <span class="ruby-ivar">@instance</span> <span class="ruby-operator">||=</span> <span class="ruby-ivar">@klass</span>.<span class="ruby-identifier">new</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">define_aggregator</span>(<span class="ruby-identifier">handler</span>.<span class="ruby-identifier">name</span>, <span class="ruby-identifier">proxy</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">handler</span>))
+  <span class="ruby-keyword">self</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-finalize" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">finalize</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="finalize-source">
+            <pre><span class="ruby-comment"># File lib/sqlite3/database.rb, line 462</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">finalize</span>
+  <span class="ruby-identifier">instance</span>.<span class="ruby-identifier">finalize</span> <span class="ruby-ivar">@fp</span>
+  <span class="ruby-ivar">@instance</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-ivar">@fp</span>.<span class="ruby-identifier">result</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-instance" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">instance</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="instance-source">
+            <pre><span class="ruby-comment"># File lib/sqlite3/database.rb, line 470</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">instance</span>
+  <span class="ruby-ivar">@instance</span> <span class="ruby-operator">||=</span> <span class="ruby-ivar">@klass</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-readonly-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">readonly?</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns <code>true</code> if the database has been open in readonly mode A
+helper to check before performing any operation</p>
+          
+          
+
+          
+          <div class="method-source-code" id="readonly-3F-source">
+            <pre><span class="ruby-comment"># File lib/sqlite3/database.rb, line 532</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">readonly?</span>
+  <span class="ruby-ivar">@readonly</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-rollback" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">rollback</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Rolls the current transaction back. If there is no current transaction,
+this will cause an error to be raised. This returns <code>true</code>, in
+order to allow it to be used in idioms like <code>abort? and rollback or
+commit</code>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="rollback-source">
+            <pre><span class="ruby-comment"># File lib/sqlite3/database.rb, line 525</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">rollback</span>
+  <span class="ruby-identifier">execute</span> <span class="ruby-string">&quot;rollback transaction&quot;</span>
+  <span class="ruby-keyword">true</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-step" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">step</span><span
+            class="method-args">( *args )</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="step-source">
+            <pre><span class="ruby-comment"># File lib/sqlite3/database.rb, line 458</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">step</span>( <span class="ruby-operator">*</span><span class="ruby-identifier">args</span> )
+  <span class="ruby-identifier">instance</span>.<span class="ruby-identifier">step</span>(<span class="ruby-ivar">@fp</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-transaction" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">transaction</span><span
+            class="method-args">( mode = :deferred ) { |self| ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Begins a new transaction. Note that nested transactions are not allowed by
+SQLite, so attempting to nest a transaction will result in a runtime
+exception.</p>
+
+<p>The <code>mode</code> parameter may be either <code>:deferred</code> (the
+default), <code>:immediate</code>, or <code>:exclusive</code>.</p>
+
+<p>If a block is given, the database instance is yielded to it, and the
+transaction is committed when the block terminates. If the block raises an
+exception, a rollback will be performed instead. Note that if a block is
+given, <a href="SQLite3.html#method-i-commit">commit</a> and <a
+href="SQLite3.html#method-i-rollback">rollback</a> should never be called
+explicitly or you&#39;ll get an error when the block terminates.</p>
+
+<p>If a block is not given, it is the caller&#39;s responsibility to end the
+transaction explicitly, either by calling <a
+href="SQLite3.html#method-i-commit">commit</a>, or by calling <a
+href="SQLite3.html#method-i-rollback">rollback</a>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="transaction-source">
+            <pre><span class="ruby-comment"># File lib/sqlite3/database.rb, line 494</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">transaction</span>( <span class="ruby-identifier">mode</span> = <span class="ruby-value">:deferred</span> )
+  <span class="ruby-identifier">execute</span> <span class="ruby-node">&quot;begin #{mode.to_s} transaction&quot;</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">block_given?</span>
+    <span class="ruby-identifier">abort</span> = <span class="ruby-keyword">false</span>
+    <span class="ruby-keyword">begin</span>
+      <span class="ruby-keyword">yield</span> <span class="ruby-keyword">self</span>
+    <span class="ruby-keyword">rescue</span> <span class="ruby-operator">::</span><span class="ruby-constant">Object</span>
+      <span class="ruby-identifier">abort</span> = <span class="ruby-keyword">true</span>
+      <span class="ruby-identifier">raise</span>
+    <span class="ruby-keyword">ensure</span>
+      <span class="ruby-identifier">abort</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">rollback</span> <span class="ruby-keyword">or</span> <span class="ruby-identifier">commit</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">true</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="private-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Private Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-ordered_map_for" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">ordered_map_for</span><span
+            class="method-args">(columns, row)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="ordered_map_for-source">
+            <pre><span class="ruby-comment"># File lib/sqlite3/database.rb, line 584</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">ordered_map_for</span> <span class="ruby-identifier">columns</span>, <span class="ruby-identifier">row</span>
+  <span class="ruby-identifier">h</span> = <span class="ruby-constant">Hash</span>[<span class="ruby-operator">*</span><span class="ruby-identifier">columns</span>.<span class="ruby-identifier">zip</span>(<span class="ruby-identifier">row</span>).<span class="ruby-identifier">flatten</span>]
+  <span class="ruby-identifier">row</span>.<span class="ruby-identifier">each_with_index</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">r</span>, <span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-identifier">h</span>[<span class="ruby-identifier">i</span>] = <span class="ruby-identifier">r</span> }
+  <span class="ruby-identifier">h</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

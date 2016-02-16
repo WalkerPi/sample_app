@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module Byebug::Helpers::EvalHelper - byebug-8.2.2 Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../";
+</script>
+
+<script src="../../js/jquery.js"></script>
+<script src="../../js/darkfish.js"></script>
+
+<link href="../../css/fonts.css" rel="stylesheet">
+<link href="../../css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../../table_of_contents.html#pages">Pages</a>
+    <a href="../../table_of_contents.html#classes">Classes</a>
+    <a href="../../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-allowing_other_threads">#allowing_other_threads</a>
+    
+    <li ><a href="#method-i-error_eval">#error_eval</a>
+    
+    <li ><a href="#method-i-error_msg">#error_msg</a>
+    
+    <li ><a href="#method-i-in_new_thread">#in_new_thread</a>
+    
+    <li ><a href="#method-i-msg">#msg</a>
+    
+    <li ><a href="#method-i-multiple_thread_eval">#multiple_thread_eval</a>
+    
+    <li ><a href="#method-i-safe_eval">#safe_eval</a>
+    
+    <li ><a href="#method-i-safe_inspect">#safe_inspect</a>
+    
+    <li ><a href="#method-i-safe_to_s">#safe_to_s</a>
+    
+    <li ><a href="#method-i-separate_thread_eval">#separate_thread_eval</a>
+    
+    <li ><a href="#method-i-silent_eval">#silent_eval</a>
+    
+    <li ><a href="#method-i-warning_eval">#warning_eval</a>
+    
+    <li ><a href="#method-i-warning_msg">#warning_msg</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-Byebug::Helpers::EvalHelper">
+  <h1 id="module-Byebug::Helpers::EvalHelper" class="module">
+    module Byebug::Helpers::EvalHelper
+  </h1>
+
+  <section class="description">
+    
+<p>Utilities to assist evaluation of code strings</p>
+
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-error_eval" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">error_eval</span><span
+            class="method-args">(str, binding = frame._binding)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Evaluates a string containing Ruby code in a specific binding, handling the
+errors at an error level.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="error_eval-source">
+            <pre><span class="ruby-comment"># File lib/byebug/helpers/eval.rb, line 44</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">error_eval</span>(<span class="ruby-identifier">str</span>, <span class="ruby-identifier">binding</span> = <span class="ruby-identifier">frame</span>.<span class="ruby-identifier">_binding</span>)
+  <span class="ruby-identifier">safe_eval</span>(<span class="ruby-identifier">str</span>, <span class="ruby-identifier">binding</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">e</span><span class="ruby-operator">|</span> <span class="ruby-identifier">fail</span>(<span class="ruby-identifier">e</span>, <span class="ruby-identifier">msg</span>(<span class="ruby-identifier">e</span>)) }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-multiple_thread_eval" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">multiple_thread_eval</span><span
+            class="method-args">(expression)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Evaluates an <code>expression</code> that might use or defer execution to
+threads other than the current one.</p>
+
+<p>@note This is necessary because when in byebug&#39;s prompt, every thread
+is “frozen” so that nothing gets run. So we need to unlock threads prior to
+evaluation or we will run into a deadlock.</p>
+
+<p>@param expression [String] Expression to evaluate</p>
+          
+          
+
+          
+          <div class="method-source-code" id="multiple_thread_eval-source">
+            <pre><span class="ruby-comment"># File lib/byebug/helpers/eval.rb, line 28</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">multiple_thread_eval</span>(<span class="ruby-identifier">expression</span>)
+  <span class="ruby-identifier">allowing_other_threads</span> { <span class="ruby-identifier">warning_eval</span>(<span class="ruby-identifier">expression</span>) }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-separate_thread_eval" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">separate_thread_eval</span><span
+            class="method-args">(expression)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Evaluates an <code>expression</code> in a separate thread.</p>
+
+<p>@param expression [String] Expression to evaluate</p>
+          
+          
+
+          
+          <div class="method-source-code" id="separate_thread_eval-source">
+            <pre><span class="ruby-comment"># File lib/byebug/helpers/eval.rb, line 12</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">separate_thread_eval</span>(<span class="ruby-identifier">expression</span>)
+  <span class="ruby-identifier">allowing_other_threads</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">in_new_thread</span> { <span class="ruby-identifier">warning_eval</span>(<span class="ruby-identifier">expression</span>) }
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-silent_eval" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">silent_eval</span><span
+            class="method-args">(str, binding = frame._binding)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Evaluates a string containing Ruby code in a specific binding, returning
+nil in an error happens.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="silent_eval-source">
+            <pre><span class="ruby-comment"># File lib/byebug/helpers/eval.rb, line 36</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">silent_eval</span>(<span class="ruby-identifier">str</span>, <span class="ruby-identifier">binding</span> = <span class="ruby-identifier">frame</span>.<span class="ruby-identifier">_binding</span>)
+  <span class="ruby-identifier">safe_eval</span>(<span class="ruby-identifier">str</span>, <span class="ruby-identifier">binding</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">_e</span><span class="ruby-operator">|</span> <span class="ruby-keyword">nil</span> }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-warning_eval" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">warning_eval</span><span
+            class="method-args">(str, binding = frame._binding)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Evaluates a string containing Ruby code in a specific binding, handling the
+errors at a warning level.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="warning_eval-source">
+            <pre><span class="ruby-comment"># File lib/byebug/helpers/eval.rb, line 52</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">warning_eval</span>(<span class="ruby-identifier">str</span>, <span class="ruby-identifier">binding</span> = <span class="ruby-identifier">frame</span>.<span class="ruby-identifier">_binding</span>)
+  <span class="ruby-identifier">safe_eval</span>(<span class="ruby-identifier">str</span>, <span class="ruby-identifier">binding</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">e</span><span class="ruby-operator">|</span> <span class="ruby-identifier">errmsg</span>(<span class="ruby-identifier">msg</span>(<span class="ruby-identifier">e</span>)) }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="private-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Private Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-allowing_other_threads" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">allowing_other_threads</span><span
+            class="method-args">() { || ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Run block temporarily ignoring all TracePoint events.</p>
+
+<p>Used to evaluate stuff within Byebug&#39;s prompt. Otherwise, any code
+creating new threads won&#39;t be properly evaluated because new threads
+will get blocked by byebug&#39;s main thread.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="allowing_other_threads-source">
+            <pre><span class="ruby-comment"># File lib/byebug/helpers/eval.rb, line 89</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">allowing_other_threads</span>
+  <span class="ruby-constant">Byebug</span>.<span class="ruby-identifier">unlock</span>
+
+  <span class="ruby-identifier">res</span> = <span class="ruby-keyword">yield</span>
+
+  <span class="ruby-constant">Byebug</span>.<span class="ruby-identifier">lock</span>
+
+  <span class="ruby-identifier">res</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-error_msg" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">error_msg</span><span
+            class="method-args">(e)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="error_msg-source">
+            <pre><span class="ruby-comment"># File lib/byebug/helpers/eval.rb, line 70</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">error_msg</span>(<span class="ruby-identifier">e</span>)
+  <span class="ruby-identifier">at</span> = <span class="ruby-identifier">e</span>.<span class="ruby-identifier">backtrace</span>
+
+  <span class="ruby-identifier">locations</span> = [<span class="ruby-node">&quot;#{at.shift}: #{warning_msg(e)}&quot;</span>]
+  <span class="ruby-identifier">locations</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">at</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">path</span><span class="ruby-operator">|</span> <span class="ruby-node">&quot;  from #{path}&quot;</span> }
+  <span class="ruby-identifier">locations</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot;\n&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-in_new_thread" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">in_new_thread</span><span
+            class="method-args">() { || ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Runs the given block in a new thread, waits for it to finish and returns
+the new thred&#39;s result.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="in_new_thread-source">
+            <pre><span class="ruby-comment"># File lib/byebug/helpers/eval.rb, line 103</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">in_new_thread</span>
+  <span class="ruby-identifier">res</span> = <span class="ruby-keyword">nil</span>
+
+  <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">new</span> { <span class="ruby-identifier">res</span> = <span class="ruby-keyword">yield</span> }.<span class="ruby-identifier">join</span>
+
+  <span class="ruby-identifier">res</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-msg" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">msg</span><span
+            class="method-args">(e)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="msg-source">
+            <pre><span class="ruby-comment"># File lib/byebug/helpers/eval.rb, line 64</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">msg</span>(<span class="ruby-identifier">e</span>)
+  <span class="ruby-identifier">msg</span> = <span class="ruby-constant">Setting</span>[<span class="ruby-value">:stack_on_error</span>] <span class="ruby-operator">?</span> <span class="ruby-identifier">error_msg</span>(<span class="ruby-identifier">e</span>) <span class="ruby-operator">:</span> <span class="ruby-identifier">warning_msg</span>(<span class="ruby-identifier">e</span>)
+
+  <span class="ruby-identifier">pr</span>(<span class="ruby-string">&#39;eval.exception&#39;</span>, <span class="ruby-identifier">text_message</span><span class="ruby-operator">:</span> <span class="ruby-identifier">msg</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-safe_eval" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">safe_eval</span><span
+            class="method-args">(str, binding) { |e| ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="safe_eval-source">
+            <pre><span class="ruby-comment"># File lib/byebug/helpers/eval.rb, line 58</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">safe_eval</span>(<span class="ruby-identifier">str</span>, <span class="ruby-identifier">binding</span>)
+  <span class="ruby-identifier">binding</span>.<span class="ruby-identifier">eval</span>(<span class="ruby-identifier">str</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/\Aeval /</span>, <span class="ruby-string">&#39;&#39;</span>), <span class="ruby-string">&#39;(byebug)&#39;</span>, <span class="ruby-value">1</span>)
+<span class="ruby-keyword">rescue</span> <span class="ruby-constant">StandardError</span>, <span class="ruby-constant">ScriptError</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+  <span class="ruby-keyword">yield</span>(<span class="ruby-identifier">e</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-safe_inspect" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">safe_inspect</span><span
+            class="method-args">(var)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="safe_inspect-source">
+            <pre><span class="ruby-comment"># File lib/byebug/helpers/eval.rb, line 111</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">safe_inspect</span>(<span class="ruby-identifier">var</span>)
+  <span class="ruby-identifier">var</span>.<span class="ruby-identifier">inspect</span>
+<span class="ruby-keyword">rescue</span>
+  <span class="ruby-identifier">safe_to_s</span>(<span class="ruby-identifier">var</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-safe_to_s" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">safe_to_s</span><span
+            class="method-args">(var)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="safe_to_s-source">
+            <pre><span class="ruby-comment"># File lib/byebug/helpers/eval.rb, line 117</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">safe_to_s</span>(<span class="ruby-identifier">var</span>)
+  <span class="ruby-identifier">var</span>.<span class="ruby-identifier">to_s</span>
+<span class="ruby-keyword">rescue</span>
+  <span class="ruby-string">&#39;*Error in evaluation*&#39;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-warning_msg" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">warning_msg</span><span
+            class="method-args">(e)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="warning_msg-source">
+            <pre><span class="ruby-comment"># File lib/byebug/helpers/eval.rb, line 78</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">warning_msg</span>(<span class="ruby-identifier">e</span>)
+  <span class="ruby-node">&quot;#{e.class} Exception: #{e.message}&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+
